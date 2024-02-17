@@ -1,6 +1,6 @@
 import axiosInstance from '@/utils/axios'
 import { MimeType } from '@/utils/mimeType'
-import type { User } from '@/interfaces/user'
+import type { User } from '@/interfaces/entity/User'
 import type { LoginParam } from '@/interfaces/LoginParam'
 
 const UserAPI = {
