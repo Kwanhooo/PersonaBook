@@ -9,6 +9,11 @@ import axiosInstance from '@/utils/axios'
 import setupStores from '@/stores'
 
 /**
+ * Element-plus组件库样式
+ */
+import 'element-plus/theme-chalk/src/message.scss'
+
+/**
  * 1.创建应用实例
  */
 const app = createApp(App)
@@ -29,3 +34,8 @@ setupStores() // 初始化所有的store
  * 4.挂载应用
  */
 app.mount('#app')
+
+/**
+ * 5.测试参数
+ */
+localStorage.setItem('token', 'TEST_TOKEN')

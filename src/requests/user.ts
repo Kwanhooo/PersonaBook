@@ -2,6 +2,7 @@ import axiosInstance from '@/utils/axios'
 import { MimeType } from '@/utils/mimeType'
 import type { User } from '@/interfaces/entity/User'
 import type { LoginParam } from '@/interfaces/LoginParam'
+import type { RegisterParam } from '@/interfaces/RegisterParam'
 
 const UserAPI = {
   register: '/user/register',
@@ -13,7 +14,7 @@ const UserAPI = {
  * 注册
  * @param data
  */
-export function register(data: User) {
+export function register(data: RegisterParam) {
   return axiosInstance({
     url: UserAPI.register,
     headers: {
