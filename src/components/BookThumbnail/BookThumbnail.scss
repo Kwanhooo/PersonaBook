@@ -1,0 +1,43 @@
+@import "@/assets/style/variables.scss";
+
+
+.book-component-wrapper {
+  width: $book-thumbnail-wanted-width;
+
+  .cover-wrapper {
+    background: #2D2D2D;
+    height: $book-thumbnail-wanted-height;
+    width: $book-thumbnail-wanted-width;
+    cursor: pointer;
+
+    .cover-image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .description-wrapper {
+    margin-top: .5rem;
+    width: $book-thumbnail-wanted-width;
+    //background: gray;
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: color cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+
+      &:hover {
+        text-decoration: underline;
+        color: $theme-color;
+      }
+    }
+
+    .author {
+      font-size: 0.8rem;
+      color: #666;
+    }
+  }
+}

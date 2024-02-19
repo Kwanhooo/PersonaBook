@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+// @ts-ignore
 import HomeView from '@/views/HomeView/HomeView.vue'
+import { isUserLoggedIn } from '@/utils/storeHelper'
 import { ElMessage } from 'element-plus'
 
 const router = createRouter({
@@ -13,7 +15,14 @@ const router = createRouter({
     {
       path: '/auth',
       name: 'auth',
+      // @ts-ignore
       component: () => import('@/views/AuthView/AuthView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*', // 捕获其余所有路径至404
+      name: 'not-found',
+      // @ts-ignore
+      component: () => import('@/views/NotFoundView/NotFoundView.vue')
     }
   ]
 })
@@ -21,15 +30,14 @@ const router = createRouter({
 // 路由守卫
 router.beforeEach((to, from, next) => {
   // 检查localStorage中是否有token
-  const token = localStorage.getItem('token')
+  const isLoggedIn = isUserLoggedIn()
 
-  // 如果要访问的不是/auth路径且没有token，则重定向到登录页；如果有token但是访问的是登录页，则重定向到首页，否则就正常进行路由跳转
-  if (to.name !== 'auth' && !token) {
-    next({ name: 'auth' })
-  } else if (to.name === 'auth' && token) {
+  // 如果登录了，但是去往登录页，直接跳转到首页
+  if (isLoggedIn && to.name === 'auth') {
     next({ name: 'home' })
+    ElMessage.warning('您已登录，无需再次登录')
   } else {
-    next()
+    next() // 确保一定要调用 next()
   }
 })
 

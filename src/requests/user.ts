@@ -1,6 +1,5 @@
-import axiosInstance from '@/utils/axios'
-import { MimeType } from '@/utils/mimeType'
-import type { User } from '@/interfaces/entity/User'
+import axiosInstance from '@/config/axios'
+import { MimeType } from '@/interfaces/constant/mimeType'
 import type { LoginParam } from '@/interfaces/LoginParam'
 import type { RegisterParam } from '@/interfaces/RegisterParam'
 

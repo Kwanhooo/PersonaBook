@@ -1,0 +1,123 @@
+.footer-wrapper {
+  font-family: sans-serif;
+  padding: 3rem 5rem 0 5rem;
+
+  background: #2D2D2D;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  a {
+    user-select: text !important;
+    color: whitesmoke;
+    text-decoration: none;
+    transition: color cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: #3894FF;
+    }
+  }
+
+  .author-info-wrapper {
+    height: 100%;
+    color: whitesmoke;
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 1.2rem;
+      user-select: text !important;
+    }
+
+    .content {
+      font-size: 1rem;
+      margin-bottom: .6rem;
+      user-select: text !important;
+    }
+
+    .social-media {
+      width: 100%;
+      //background: gold;
+      display: flex;
+      flex-direction: row;
+      margin-top: 1.2rem;
+
+      .item {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #aeaeae;
+        padding: 10px;
+        transition: background-color cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          background: #aeaeae;
+        }
+      }
+
+      .item:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  .footer-item-wrapper {
+    margin-left: 15rem;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .footer-item {
+      .title {
+        color: #aeaeae;
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        font-weight: bold;
+      }
+
+      .content {
+        margin-bottom: .6rem;
+        color: whitesmoke;
+        font-size: .9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .footer-item-wrapper {
+    margin-left: 10rem !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .footer-item-wrapper {
+    margin-left: 5rem !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .footer-item-wrapper {
+    margin-left: 0 !important;
+  }
+
+  .author-info-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .footer-item-wrapper {
+    flex-direction: column !important;
+
+    div {
+      margin-bottom: 2rem;
+    }
+  }
+}

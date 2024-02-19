@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { User, Lock } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/stores/userStore'
+import { useUserStore } from '@/stores/modules/userStore'
 
 const activeName = ref('user')
 const username = ref('')
 const password = ref('')
+
+document.title = '登录 - 智慧图书馆'
 
 const handleLogin = () => {
   // 任意为空则不允许登录
@@ -28,12 +29,17 @@ const handleRegister = () => {
   useUserStore().register(username.value, password.value, '读者')
 }
 
+// TODO: 在生产环境中删除 - 模拟登录
+const handleMockLogin = () => {
+  useUserStore().mockLogin()
+}
+
 </script>
 
 <template>
   <div class="auth-view-wrapper">
     <div class="main-wrapper center">
-      <div class="title">智慧图书馆登录</div>
+      <div class="title">智慧图书馆 登录</div>
       <div class="slogan">
         <el-text type="info">给孩子一个有温度的阅读平台</el-text>
       </div>
@@ -46,14 +52,14 @@ const handleRegister = () => {
           v-model="username"
           size="large"
           placeholder="用户名"
-          :prefix-icon="User"
+          prefix-icon="User"
           style="margin-bottom: 1rem;"
         />
         <el-input
           v-model="password"
           size="large"
           placeholder="密码"
-          :prefix-icon="Lock"
+          prefix-icon="Lock"
           style="margin-bottom: 2rem;"
         />
       </div>
@@ -63,11 +69,12 @@ const handleRegister = () => {
         </el-button>
       </div>
       <div class="forget-wrapper">
-        <el-link>忘记密码</el-link>
+        <el-link @click="handleMockLogin()">忘记密码</el-link>
       </div>
     </div>
     <div class="footer-wrapper center">
-      Copyright© 2024 中南大学开源实验室
+      <div>Copyright© 2024 中南大学开源实验室</div>
+      <div style="margin-top: .5rem">粤ICP备2022013690号-2</div>
     </div>
   </div>
 </template>

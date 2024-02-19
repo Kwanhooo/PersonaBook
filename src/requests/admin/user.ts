@@ -1,5 +1,5 @@
-import axiosInstance from '@/utils/axios'
-import { MimeType } from '@/utils/mimeType'
+import axiosInstance from '@/config/axios'
+import { MimeType } from '@/interfaces/constant/mimeType'
 import type { LoginParam } from '@/interfaces/LoginParam'
 import type { AdminUserQueryParam } from '@/interfaces/AdminUserQueryParam'
 import type { AdminUserDisableParam } from '@/interfaces/AdminUserDisableParam'
