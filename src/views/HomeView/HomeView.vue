@@ -66,7 +66,7 @@ const handleSearch = (k: string) => {
           <i class="placeholder" v-for="p in 20" v-bind:key="p" />
         </div>
       </div>
-      <div v-if="isUserLoggedIn()" class="recommend-wrapper">
+      <div class="recommend-wrapper">
         <div class="title">新书速递</div>
         <div class="books-wrapper">
           <BookThumbnail v-for="b in newBooks"
