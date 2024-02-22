@@ -112,6 +112,7 @@ fi
 
 # 2. 安装项目依赖
 echo -e "${BLUE}步骤2/6: 正在安装依赖...${NC}"
+cd "$target_dir" || exit
 if rm -rf pnpm-lock.yaml node_modules/ && pnpm install; then
   echo -e "${GREEN}依赖安装完成${NC}"
 else
