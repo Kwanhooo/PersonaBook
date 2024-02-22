@@ -6,6 +6,8 @@ export class UserRole {
   public static readonly USER = 'user'
   // 管理员 admin
   public static readonly ADMIN = 'admin'
+  // 任何人 any
+  public static readonly GUEST = 'guest'
 }
 
 /**

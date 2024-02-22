@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseHeader from '@/layouts/BaseHeader/BaseHeader.vue'
-import BaseFooter from '@/layouts/BaseFooter/BaseFooter.vue'
 import hotSearch from '@/mock/hot-search-books.json'
 import Carousel from '@/components/HomeViewCarousel/HomeViewCarousel.vue'
 import { isUserLoggedIn } from '@/utils/storeHelper'
@@ -11,8 +9,6 @@ import newBooks from '@/mock/new-books.json'
 import $router from '@/router'
 
 const keyword = ref('')
-
-document.title = '首页 - 智慧图书馆'
 
 const handleSearch = (k: string) => {
   console.log('search', k)
@@ -24,7 +20,6 @@ const handleSearch = (k: string) => {
 <template>
   <el-backtop :right="100" :bottom="100" />
   <div class="home-wrapper">
-    <BaseHeader />
     <div class="main-wrapper">
       <div class="search-wrapper">
         <el-input
@@ -83,7 +78,6 @@ const handleSearch = (k: string) => {
 
       </div>
     </div>
-    <BaseFooter />
   </div>
 
 </template>

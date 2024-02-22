@@ -8,6 +8,17 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BookThumbnail: typeof import('./src/components/BookThumbnail/BookThumbnail.vue')['default']
+    ElBacktop: typeof import('element-plus/es')['ElBacktop']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElLink: typeof import('element-plus/es')['ElLink']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
+    ElText: typeof import('element-plus/es')['ElText']
     HomeViewCarousel: typeof import('./src/components/HomeViewCarousel/HomeViewCarousel.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

@@ -7,8 +7,6 @@ const activeName = ref('user')
 const username = ref('')
 const password = ref('')
 
-document.title = '登录 - 智慧图书馆'
-
 const handleLogin = () => {
   // 任意为空则不允许登录
   if (!username.value || !password.value) {
@@ -31,7 +29,11 @@ const handleRegister = () => {
 
 // TODO: 在生产环境中删除 - 模拟登录
 const handleMockLogin = () => {
-  useUserStore().mockLogin()
+  // 是否按住了ctrl键
+  // @ts-ignore
+  const isCtrl = event.ctrlKey
+  if (!isCtrl) useUserStore().mockLogin()
+  else useUserStore().mockAdminLogin()
 }
 
 </script>

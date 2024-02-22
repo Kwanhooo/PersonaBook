@@ -92,6 +92,17 @@ export const useUserStore = defineStore({
       localStorage.setItem('token', 'TEST_TOKEN')
       $router.push('/')
       ElMessage.success(this.user.nickname + '，欢迎回来！')
+    },
+    mockAdminLogin() {
+      this.user = {
+        username: 'dev-admin-0',
+        role: UserRole.ADMIN,
+        is_valid: UserValid.VALID,
+        nickname: '管理员'
+      }
+      localStorage.setItem('token', 'ADMIN_TEST_TOKEN')
+      $router.push('/')
+      ElMessage.success(this.user.nickname + '，欢迎回来！')
     }
   }
 })

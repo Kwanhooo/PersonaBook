@@ -1,10 +1,8 @@
 import axios from 'axios'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { PRODUCTION_SERVER_URL, REQUEST_TIMEOUT } from '@/config/server'
 
 const axiosInstance = axios.create({
-  baseURL: PRODUCTION_SERVER_URL,
-  timeout: REQUEST_TIMEOUT
+  baseURL: import.meta.env.REQUEST_SERVER_URL,
+  timeout: import.meta.env.REQUEST_TIMEOUT
 })
 
 axiosInstance.interceptors.request.use(
