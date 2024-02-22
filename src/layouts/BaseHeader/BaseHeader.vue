@@ -22,7 +22,7 @@ const goToProfile = () => {
 
 <template>
   <div class="header-wrapper">
-    <div class="logo ar-center">
+    <div class="logo ar-center" @click="$router.push('/')">
       <img src="../../assets/svg/logo.svg" alt="logo" class="logo-img" />
       <span class="title">智慧图书馆</span>
     </div>
