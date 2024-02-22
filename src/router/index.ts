@@ -41,9 +41,10 @@ const routes: Array<RouteRecordRaw> = [
       title: '个人中心',
       isAuthRequired: true,
       isShowFooter: false,
-      isShowHeader: false,
+      isShowHeader: true,
       role: UserRole.USER
     } as RouteMetaProvider,
+    redirect: { name: 'profile-edit' },
     children: [
       {
         path: 'profile-edit',
@@ -54,7 +55,7 @@ const routes: Array<RouteRecordRaw> = [
           title: '信息修改',
           isAuthRequired: true,
           isShowFooter: false,
-          isShowHeader: false,
+          isShowHeader: true,
           role: UserRole.USER
         } as RouteMetaProvider
       },
@@ -64,10 +65,10 @@ const routes: Array<RouteRecordRaw> = [
         // @ts-ignore
         component: () => import('@/views/user/Space/RatedBooksView/RatedBooksView.vue'),
         meta: {
-          title: '个人评分图书列表',
+          title: '评分图书列表',
           isAuthRequired: true,
           isShowFooter: false,
-          isShowHeader: false,
+          isShowHeader: true,
           role: UserRole.USER
         } as RouteMetaProvider
       },
@@ -77,10 +78,10 @@ const routes: Array<RouteRecordRaw> = [
         // @ts-ignore
         component: () => import('@/views/user/Space/ReviewedBooksView/ReviewedBooksView.vue'),
         meta: {
-          title: '个人评论图书列表',
+          title: '评论图书列表',
           isAuthRequired: true,
           isShowFooter: false,
-          isShowHeader: false,
+          isShowHeader: true,
           role: UserRole.USER
         } as RouteMetaProvider
       },
@@ -90,10 +91,10 @@ const routes: Array<RouteRecordRaw> = [
         // @ts-ignore
         component: () => import('@/views/user/Space/FavoriteBooksView/FavoriteBooksView.vue'),
         meta: {
-          title: '个人收藏图书列表',
+          title: '收藏图书列表',
           isAuthRequired: true,
           isShowFooter: false,
-          isShowHeader: false,
+          isShowHeader: true,
           role: UserRole.USER
         } as RouteMetaProvider
       },
@@ -103,10 +104,10 @@ const routes: Array<RouteRecordRaw> = [
         // @ts-ignore
         component: () => import('@/views/user/Space/ReadingProfileView/ReadingProfileView.vue'),
         meta: {
-          title: '个人阅读画像',
+          title: '阅读画像',
           isAuthRequired: true,
           isShowFooter: false,
-          isShowHeader: false,
+          isShowHeader: true,
           role: UserRole.USER
         } as RouteMetaProvider
       },
@@ -119,7 +120,7 @@ const routes: Array<RouteRecordRaw> = [
           title: '阅读能力测评',
           isAuthRequired: true,
           isShowFooter: false,
-          isShowHeader: false,
+          isShowHeader: true,
           role: UserRole.USER
         } as RouteMetaProvider
       }
@@ -134,7 +135,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '404 Not Found',
       isAuthRequired: false,
       isShowFooter: false,
-      isShowHeader: false,
+      isShowHeader: true,
       role: UserRole.GUEST
     } as RouteMetaProvider
   }

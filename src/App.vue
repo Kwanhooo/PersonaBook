@@ -5,18 +5,19 @@ import BaseHeader from '@/layouts/BaseHeader/BaseHeader.vue'
 import BaseFooter from '@/layouts/BaseFooter/BaseFooter.vue'
 import type { RouteMetaProvider } from '@/interfaces/application/RouteMetaProvider'
 
-const route = useRoute()
+const $route = useRoute()
+const routeMeta = ref<RouteMetaProvider>($route.meta as RouteMetaProvider)
 
 const isShowHeader = ref(true)
 const isShowFooter = ref(true)
 
 // 更新页面标题，页眉和页脚的显示状态
 watchEffect(() => {
-  let routeMeta = route.meta as RouteMetaProvider
+  routeMeta.value = $route.meta as RouteMetaProvider
 
-  document.title = (import.meta.env.MODE === 'development' ? ('(dev) ') : '') + routeMeta.title + ' - ' + import.meta.env.VITE_APP_NAME
-  isShowHeader.value = routeMeta.isShowHeader
-  isShowFooter.value = routeMeta.isShowFooter
+  document.title = (import.meta.env.MODE === 'development' ? ('(dev) ') : '') + routeMeta.value.title + ' - ' + import.meta.env.VITE_APP_NAME
+  isShowHeader.value = routeMeta.value.isShowHeader
+  isShowFooter.value = routeMeta.value.isShowFooter
 })
 </script>
 
