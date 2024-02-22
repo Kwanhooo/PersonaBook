@@ -91,11 +91,17 @@ watchEffect(() => {
         </el-page-header>
       </div>
       <div class="content-wrapper">
-        <router-view v-slot="{ Component }">
-          <keep-alive>
-            <component :is="Component" />
-          </keep-alive>
-        </router-view>
+        <transition
+          name="custom-classes-transition"
+          enter-active-class="animate__animated animate__fadeIn"
+          leave-active-class="animate__animated animate__fadeOut"
+        >
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </router-view>
+        </transition>
       </div>
     </div>
   </div>

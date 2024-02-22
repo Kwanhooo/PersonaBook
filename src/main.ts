@@ -16,6 +16,10 @@ import setupStores from '@/stores'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/theme-chalk/src/message.scss'
 
+/**
+ * 动画库
+ */
+import 'animate.css'
 
 /**
  * 1.创建应用实例

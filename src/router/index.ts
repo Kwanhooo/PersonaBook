@@ -135,7 +135,7 @@ const routes: Array<RouteRecordRaw> = [
       title: '404 Not Found',
       isAuthRequired: false,
       isShowFooter: false,
-      isShowHeader: true,
+      isShowHeader: false,
       role: UserRole.GUEST
     } as RouteMetaProvider
   }
