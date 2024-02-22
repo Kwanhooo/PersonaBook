@@ -22,7 +22,7 @@
 #%
 #================================================================
 #- IMPLEMENTATION
-#-    version         PersonaBook Frontend Deploy Script 1.1.0
+#-    version         PersonaBook Frontend Deploy Script 1.2.0
 #-    author          Kwanhooo
 #-    copyright       Copyright (C) 2024 Kwanhooo
 #-    license         GNU General Public License Version 3
@@ -89,16 +89,24 @@ if [ ! -d "$target_dir" ]; then
   if git clone $remote "$target_dir"; then
     echo -e "${GREEN}仓库克隆完成${NC}"
   else
-    echo -e "${RED}仓库克隆失败，请尝试将远端仓库设定为Gitee以绕过网络审查。注意：Gitee版本可能落后于Github${NC}"
+    echo -e "${RED}仓库克隆失败${NC}"
     exit 1
   fi
 else
-  cd "$target_dir" || exit 1
-  if git pull $remote; then
-    echo -e "${GREEN}仓库更新完成${NC}"
+  cd "$target_dir" || exit
+  if ! git pull $remote; then
+    echo -e "${RED}仓库更新失败，正在尝试重新克隆...${NC}"
+    cd ..
+    rm -rf "$target_dir"  # 删除旧的源码目录
+    # 重新尝试克隆
+    if git clone $remote "$target_dir"; then
+      echo -e "${GREEN}仓库重新克隆完成${NC}"
+    else
+      echo -e "${RED}仓库重新克隆失败${NC}"
+      exit 1
+    fi
   else
-    echo -e "${RED}仓库更新失败，请尝试将远端仓库设定为Gitee以绕过网络审查。注意：Gitee版本可能落后于Github${NC}"
-    exit 1
+    echo -e "${GREEN}仓库更新完成${NC}"
   fi
 fi
 
