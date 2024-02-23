@@ -3,10 +3,13 @@ import { computed } from 'vue'
 import { isUserLoggedIn } from '@/utils/storeHelper'
 import $router from '@/router'
 import { useUserStore } from '@/stores/modules/userStore'
+import { Key, Switch, UserFilled } from '@element-plus/icons-vue'
+import { UserRole } from '@/interfaces/constant/magicNumberUser'
 
 const userStore = useUserStore()
 
 const userNickname = computed(() => userStore.user.nickname || '未登录')
+const userRole = computed(() => userStore.user.role || UserRole.GUEST)
 
 // 退出登录
 const handleLogout = () => {
@@ -16,6 +19,11 @@ const handleLogout = () => {
 // 跳转到个人中心
 const goToProfile = () => {
   $router.push('/space')
+}
+
+// 跳转到后台
+const goToBackstage = () => {
+  $router.push('/backstage')
 }
 
 </script>
@@ -34,6 +42,14 @@ const goToProfile = () => {
       <el-button v-if="!isUserLoggedIn()" size="large" @click="$router.push('/auth')">立即登录</el-button>
       <div v-else>
         <el-popover placement="bottom" trigger="hover">
+          <p v-if="userRole === UserRole.ADMIN">
+            <el-button type="text">
+              <el-icon>
+                <Key />
+              </el-icon>
+              <span style="margin-left: 20px" @click="goToBackstage()">管理员后台</span>
+            </el-button>
+          </p>
           <p>
             <el-button type="text">
               <el-icon>

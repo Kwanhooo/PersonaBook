@@ -9,7 +9,7 @@ const handleSeeMore = () => {
 
 <template>
   <div class="carousel-wrapper">
-    <el-carousel height="400px" interval="10000">
+    <el-carousel height="400px" :interval="10000">
       <el-carousel-item v-for="item in 3" v-bind:key="item">
         <div class="carousel-item-inner">
           <img class="carousel-image" src="@/assets/image/bg-carousel.png" alt="1" />

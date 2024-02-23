@@ -77,8 +77,8 @@ export const useUserStore = defineStore({
       this.user = {} as User
       // 清空token
       localStorage.removeItem('token')
-      // 跳转登录页
-      $router.push('/auth')
+      // 跳转首页
+      $router.push('/')
       ElMessage.success('您现已退出登录！')
     },
     // TODO: 生产环境中移除 - 模拟登录

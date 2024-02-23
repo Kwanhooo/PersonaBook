@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 import { ChatLineRound, EditPen, Odometer, Setting, Switch, User } from '@element-plus/icons-vue'
 import $router from '@/router'
 import { useRoute } from 'vue-router'
@@ -9,17 +9,20 @@ const isCollapse = ref(false)
 const $route = useRoute()
 const routeMeta = ref<RouteMetaProvider>($route.meta as RouteMetaProvider)
 
-const handleSelect = (index: string) => {
-  if (index === 'collapse') {
-    isCollapse.value = !isCollapse.value
-  } else {
-    $router.push({ name: index })
-  }
+const activeIndex = computed(() => $route.path)
+
+// 如果屏幕宽度小于 768px，自动收起侧边栏
+if (window.innerWidth < 768) {
+  isCollapse.value = true
 }
 
 watchEffect(() => {
   routeMeta.value = $route.meta as RouteMetaProvider
 })
+
+const toggleCollapse = () => {
+  isCollapse.value = !isCollapse.value
+}
 
 </script>
 
@@ -27,42 +30,43 @@ watchEffect(() => {
   <div class="space-view-wrapper">
     <div class="navigator-wrapper">
       <el-menu
-        default-active="profile-edit"
+        :default-active="activeIndex"
         class="el-menu-vertical"
         :collapse="isCollapse"
-        @select="handleSelect"
+        :unique-opened="true"
+        :router="true"
       >
-        <el-menu-item index="collapse">
+        <el-menu-item index="/no-route/collapse" @click="toggleCollapse">
           <el-icon>
             <Switch />
           </el-icon>
           <template #title>{{ isCollapse ? '展开' : '收起' }}</template>
         </el-menu-item>
-        <el-menu-item index="profile-edit">
+        <el-menu-item index="/space/profile-edit">
           <el-icon>
             <User />
           </el-icon>
           <template #title>信息修改</template>
         </el-menu-item>
-        <el-menu-item index="rated-books">
+        <el-menu-item index="/space/rated-books">
           <el-icon>
             <Odometer />
           </el-icon>
           <template #title>评分图书列表</template>
         </el-menu-item>
-        <el-menu-item index="reviewed-books">
+        <el-menu-item index="/space/reviewed-books">
           <el-icon>
             <ChatLineRound />
           </el-icon>
           <template #title>评论图书列表</template>
         </el-menu-item>
-        <el-menu-item index="reading-profile">
+        <el-menu-item index="/space/reading-profile">
           <el-icon>
             <Setting />
           </el-icon>
           <template #title>阅读画像</template>
         </el-menu-item>
-        <el-menu-item index="reading-assessment">
+        <el-menu-item index="/space/reading-assessment">
           <el-icon>
             <EditPen />
           </el-icon>

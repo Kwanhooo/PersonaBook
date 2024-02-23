@@ -1,11 +1,10 @@
 <script setup lang="ts">
 
+import InfoPlaceholder from '@/components/InfoPlaceholder/InfoPlaceholder.vue'
 </script>
 
 <template>
-  <div>
-    <h1>ReviewedBooksView</h1>
-  </div>
+  <InfoPlaceholder />
 </template>
 
 <style scoped lang="scss">

@@ -4,8 +4,14 @@
 $theme-color: #2779D6;
 
 /**
+ * 首页 HomeView
+*/
+$home-view-padding-x: 10rem;
+
+/**
  * 图书缩略组件 BookThumbnail
  */
 $book-thumbnail-size-ratio: 4;
 $book-thumbnail-wanted-width: calc($book-thumbnail-size-ratio * 3rem);
 $book-thumbnail-wanted-height: calc($book-thumbnail-size-ratio * 4rem);
+

@@ -18,7 +18,7 @@ const handleSearch = (k: string) => {
 </script>
 
 <template>
-  <el-backtop :right="100" :bottom="100" />
+  <el-backtop :right="60" :bottom="100" />
   <div class="home-wrapper">
     <div class="main-wrapper">
       <div class="search-wrapper">

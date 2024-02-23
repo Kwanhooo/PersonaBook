@@ -22,7 +22,6 @@
     .content-wrapper {
       flex: 1;
       overflow: auto;
-      //background: yellow;
       padding: 1rem 0;
     }
   }
@@ -34,4 +33,8 @@
   &:not(.el-menu--collapse) {
     width: 200px;
   }
+}
+
+.menu-item-text-indent {
+  text-indent: 10px;
 }
