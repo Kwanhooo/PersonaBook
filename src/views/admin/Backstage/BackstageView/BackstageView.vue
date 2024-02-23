@@ -29,7 +29,7 @@ const parentRoutePath = computed(() => {
 })
 
 const parentRouteTitle = computed(() => {
-  return getRouteInfoByPath(parentRoutePath.value).meta.title
+  return getRouteInfoByPath(parentRoutePath.value)?.meta?.title ?? '未知'
 })
 
 </script>
