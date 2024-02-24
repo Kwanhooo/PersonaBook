@@ -6,7 +6,17 @@ const props = defineProps({
   id: Number,
   title: String,
   subtitle: String,
-  cover: String
+  cover: String,
+  popoverMode: {
+    required: false,
+    type: Boolean,
+    default: false
+  },
+  popoverText: {
+    required: false,
+    type: String,
+    default: ''
+  }
 })
 
 const goToBookDetail = () => {
@@ -22,8 +32,17 @@ const goToBookDetail = () => {
       <img :src="props.cover" alt="cover" class="cover-image" />
     </div>
     <div class="description-wrapper">
-      <div class="title" @click="goToBookDetail()">{{ props.title }}</div>
-      <div class="subtitle">{{ props.subtitle }}</div>
+      <div class="title clickable" @click="goToBookDetail()">{{ props.title }}</div>
+      <el-popover placement="bottom" trigger="hover">
+        <p>
+          {{ props.popoverText }}
+        </p>
+        <template #reference>
+          <div :class="{'subtitle':true,'clickable':popoverMode,'popoverModeSubtitle':popoverMode}">
+            {{ props.subtitle }}
+          </div>
+        </template>
+      </el-popover>
     </div>
   </div>
 </template>
