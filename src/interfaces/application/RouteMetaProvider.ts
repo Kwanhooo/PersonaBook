@@ -4,5 +4,8 @@ export interface RouteMetaProvider extends Record<string | number | symbol, unkn
   isShowHeader: boolean;
   isShowFooter: boolean;
 
+  headerTitle?: string;
+  headerLogo?: string;
+
   [key: string]: any;
 }

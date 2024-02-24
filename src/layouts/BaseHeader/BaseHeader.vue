@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, defineProps } from 'vue'
 import { isUserLoggedIn } from '@/utils/storeHelper'
 import $router from '@/router'
 import { useUserStore } from '@/stores/modules/userStore'
 import { Key, Switch, UserFilled } from '@element-plus/icons-vue'
 import { UserRole } from '@/interfaces/constant/magicNumberUser'
+
+const props = defineProps({
+  title: String,
+  logo: String
+})
 
 const userStore = useUserStore()
 
@@ -31,8 +36,8 @@ const goToBackstage = () => {
 <template>
   <div class="header-wrapper">
     <div class="logo ar-center" @click="$router.push('/')">
-      <img src="../../assets/svg/logo.svg" alt="logo" class="logo-img" />
-      <span class="title">智慧图书馆</span>
+      <img :src="props.logo" alt="logo" class="logo-img" />
+      <span class="title">{{ props.title }}</span>
     </div>
     <div class="slogan ar-center">
       <el-text type="info">给孩子一个有温度的阅读平台</el-text>
@@ -78,7 +83,7 @@ const goToBackstage = () => {
       </div>
     </div>
   </div>
-  <div class="placeholder-block"></div>
+  <div class="placeholder-block" />
 </template>
 
 <style scoped lang="scss">

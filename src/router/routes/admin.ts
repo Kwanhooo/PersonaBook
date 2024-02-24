@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { UserRole } from '@/interfaces/constant/magicNumberUser'
+import adminLogo from '@/assets/svg/logo-admin.svg'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,7 +12,9 @@ const routes: Array<RouteRecordRaw> = [
       isAuthRequired: true,
       isShowFooter: false,
       isShowHeader: true,
-      role: UserRole.ADMIN
+      role: UserRole.ADMIN,
+      headerTitle: '后台管理系统',
+      headerLogo: adminLogo
     },
     redirect: '/backstage/book-management/book-info',
     children: [
