@@ -31,3 +31,11 @@
     padding: 0 30%;
   }
 }
+
+@media (max-width: 1000px) {
+  .profile-edit-view-wrapper {
+    .form-wrapper {
+      padding: 0 10%;
+    }
+  }
+}

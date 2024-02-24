@@ -18,7 +18,7 @@ const headerLogo = ref()
 watchEffect(() => {
   routeMeta.value = $route.meta as RouteMetaProvider
 
-  document.title = (import.meta.env.MODE === 'development' ? ('[Dev] ') : '') + (routeMeta.value?.title ?? '载入中') + ' - ' + import.meta.env.VITE_APP_NAME
+  document.title = (import.meta.env.MODE === 'development' ? ('[Dev-Mode] ') : '') + (routeMeta.value?.title ?? '载入中') + ' - ' + import.meta.env.VITE_APP_NAME
   isShowHeader.value = routeMeta.value.isShowHeader
   isShowFooter.value = routeMeta.value.isShowFooter
   headerTitle.value = routeMeta.value?.headerTitle ?? import.meta.env.VITE_APP_NAME

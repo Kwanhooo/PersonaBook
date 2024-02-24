@@ -20,7 +20,6 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'book-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'book-management',
         meta: {
           title: '图书管理',
@@ -59,7 +58,6 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'portrait-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'portrait-management',
         meta: {
           title: '画像管理',
@@ -110,7 +108,6 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'user-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'user-management',
         meta: {
           title: '用户管理',
@@ -119,12 +116,12 @@ const routes: Array<RouteRecordRaw> = [
           isShowHeader: true,
           role: UserRole.ADMIN
         },
-        redirect: '/backstage/user-management/users',
+        redirect: '/backstage/user-management/students',
         children: [
           {
             path: 'students',
             name: 'students',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/UserMangement/StudentsView/StudentsView.vue'),
             meta: {
               title: '学生管理',
               isAuthRequired: true,
@@ -137,7 +134,6 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'survey-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'survey-management',
         meta: {
           title: '问卷管理',
@@ -176,7 +172,6 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'rating-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'rating-management',
         meta: {
           title: '评分管理',
@@ -215,7 +210,6 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'comment-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'comment-management',
         meta: {
           title: '评论管理',
@@ -254,7 +248,6 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: 'collection-management',
-        component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
         name: 'collection-management',
         meta: {
           title: '收藏管理',

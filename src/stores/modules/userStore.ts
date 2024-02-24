@@ -84,10 +84,10 @@ export const useUserStore = defineStore({
     // TODO: 生产环境中移除 - 模拟登录
     mockLogin() {
       this.user = {
-        username: 'dev-8209200504',
+        username: 'dev-user-8209200504',
         role: UserRole.USER,
         is_valid: UserValid.VALID,
-        nickname: '开发者'
+        nickname: '李菌耗'
       }
       localStorage.setItem('token', 'TEST_TOKEN')
       $router.push('/')
@@ -95,7 +95,7 @@ export const useUserStore = defineStore({
     },
     mockAdminLogin() {
       this.user = {
-        username: 'dev-admin-0',
+        username: 'dev-admin-0000000001',
         role: UserRole.ADMIN,
         is_valid: UserValid.VALID,
         nickname: '管理员'

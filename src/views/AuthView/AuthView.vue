@@ -36,6 +36,16 @@ const handleMockLogin = () => {
   else useUserStore().mockAdminLogin()
 }
 
+// TODO: 在生产环境中删除 - 模拟登录提示信息
+ElMessage.warning({
+  duration: 10000,
+  message: '[Dev-Mode] 点击忘记密码，以“普通用户”身份登录'
+})
+ElMessage.warning({
+  duration: 10000,
+  message: '[Dev-Mode] 按住CTRL键，并点击忘记密码，以“管理员”身份登录'
+})
+
 </script>
 
 <template>

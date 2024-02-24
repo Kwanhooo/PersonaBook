@@ -203,6 +203,7 @@ const parentRouteTitle = computed(() => {
         </el-page-header>
       </div>
       <div class="content-wrapper">
+        <el-backtop target=".content-wrapper" :bottom="100" :right="60"></el-backtop>
         <transition
           name="custom-classes-transition"
           enter-active-class="animate__animated animate__fadeIn"
