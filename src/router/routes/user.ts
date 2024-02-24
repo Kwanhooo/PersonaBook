@@ -18,6 +18,19 @@ const routes: Array<RouteRecordRaw> = [
     redirect: { name: 'profile-edit' },
     children: [
       {
+        path: 'reset-password',
+        name: 'reset-password',
+        // @ts-ignore
+        component: () => import('@/views/user/Space/ResetPasswordView/ResetPasswordView.vue'),
+        meta: {
+          title: '密码修改',
+          isAuthRequired: true,
+          isShowFooter: false,
+          isShowHeader: true,
+          role: UserRole.USER
+        } as RouteMetaProvider
+      },
+      {
         path: 'profile-edit',
         name: 'profile-edit',
         // @ts-ignore

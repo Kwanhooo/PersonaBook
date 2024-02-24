@@ -5,7 +5,7 @@ import $router from '@/router'
 const props = defineProps({
   id: Number,
   title: String,
-  author: String,
+  subtitle: String,
   cover: String
 })
 
@@ -23,7 +23,7 @@ const goToBookDetail = () => {
     </div>
     <div class="description-wrapper">
       <div class="title" @click="goToBookDetail()">{{ props.title }}</div>
-      <div class="author">{{ props.author }}</div>
+      <div class="subtitle">{{ props.subtitle }}</div>
     </div>
   </div>
 </template>

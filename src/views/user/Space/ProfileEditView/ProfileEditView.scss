@@ -1,0 +1,33 @@
+.profile-edit-view-wrapper {
+
+  .basic-info-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2rem;
+
+    .avatar {
+      width: 6rem;
+      height: 6rem;
+      border-radius: 50%;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      margin-left: 4rem;
+
+      *:not(:last-child) {
+        margin-bottom: .5rem;
+      }
+    }
+  }
+
+  .form-wrapper {
+    align-items: center;
+    min-height: 500px;
+    padding: 0 30%;
+  }
+}

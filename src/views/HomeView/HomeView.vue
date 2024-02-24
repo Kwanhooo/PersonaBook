@@ -55,7 +55,7 @@ const handleSearch = (k: string) => {
                          v-bind:key="b.id"
                          v-bind:id="b.id"
                          v-bind:title="b.title"
-                         v-bind:author="b.author"
+                         v-bind:subtitle="b.author"
                          v-bind:cover="b.cover"
           />
           <i class="placeholder" v-for="p in 20" v-bind:key="p" />
@@ -68,7 +68,7 @@ const handleSearch = (k: string) => {
                          v-bind:key="b.id"
                          v-bind:id="b.id"
                          v-bind:title="b.title"
-                         v-bind:author="b.author"
+                         v-bind:subtitle="b.author"
                          v-bind:cover="b.cover"
           />
           <i class="placeholder" v-for="p in 10" v-bind:key="p" />
