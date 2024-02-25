@@ -45,7 +45,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'book-category',
             name: 'book-category',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/BookManagement/BookCategoryView/BookCategoryView.vue'),
             meta: {
               title: '图书分类',
               isAuthRequired: true,

@@ -57,7 +57,7 @@ const parentRouteTitle = computed(() => {
             <el-icon>
               <Collection />
             </el-icon>
-            <span>图书信息管理</span>
+            <span>图书管理</span>
           </template>
           <el-menu-item-group>
             <el-menu-item class="menu-item-text-indent" index="/backstage/book-management/book-info">

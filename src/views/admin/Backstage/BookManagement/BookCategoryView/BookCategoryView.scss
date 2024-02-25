@@ -1,0 +1,34 @@
+.book-category-view-wrapper {
+  height: 100%;
+
+  .control-group-wrapper {
+    display: flex;
+
+    .left {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  .table-wrapper {
+    background: yellow;
+    margin-top: 16px;
+    height: calc(100% - 16px - 32px - 16px - 16px - 16px);
+  }
+
+  .pagination-controller-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 16px;
+  }
+}
