@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import bookRatingData from '@/mock/rating-management-rating-info.json'
+import bookRatingData from '@/mock/collection-management-collection-info.json'
 
 const searchKeyword = ref('')
 
@@ -21,7 +21,7 @@ function handleChange(val: number) {
 </script>
 
 <template>
-  <div class="rating-info-view-wrapper">
+  <div class="collection-info-view-wrapper">
     <div class="control-group-wrapper">
       <div class="left">
         <el-input v-model="searchKeyword" placeholder="请输入图书信息" style="width:20rem;margin-right: 1rem" />
@@ -44,7 +44,7 @@ function handleChange(val: number) {
         <el-table-column min-width="50" align="center" type="index" label="序号"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="title" label="图书名"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="rating" label="总评分"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="collection" label="总收藏数"></el-table-column>
         <el-table-column align="center" min-width="50" label="操作">
           <template #default="scope">
             <el-button type="text" @click="viewDetails(scope.row)">详情</el-button>
@@ -66,5 +66,5 @@ function handleChange(val: number) {
 </template>
 
 <style scoped lang="scss">
-@import "./RatingInfoView";
+@import "CollectionInfoView";
 </style>

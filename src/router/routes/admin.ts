@@ -261,7 +261,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'collection-info',
             name: 'collection-info',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/CollectionManagement/CollectionInfoView/CollectionInfoView.vue'),
             meta: {
               title: '收藏信息',
               isAuthRequired: true,
@@ -273,7 +273,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'collection-details',
             name: 'collection-details',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/CollectionManagement/CollectionDetailsView/CollectionDetailsView.vue'),
             meta: {
               title: '收藏详情',
               isAuthRequired: true,
