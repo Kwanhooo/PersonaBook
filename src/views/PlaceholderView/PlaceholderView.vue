@@ -13,6 +13,7 @@ watchEffect(() => {
 
 <template>
   <div class="placeholder-view-wrapper">
+    <div class="text">正在施工</div>
     <div class="path">{{ $route.path }}</div>
     <div class="title">{{ routeMeta.title }}</div>
   </div>
