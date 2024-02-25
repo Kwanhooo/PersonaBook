@@ -7,13 +7,35 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: $theme-color;
+  background-image: repeating-linear-gradient(
+                  45deg,
+                  $theme-color 0,
+                  $theme-color 40px,
+                  $theme-color-light 40px,
+                  $theme-color-light 80px
+  );
 
   * {
     padding: 10px;
     text-align: center;
-    font-size: 3rem;
+  }
+
+  .text {
+    font-size: 5rem;
     color: whitesmoke;
+    font-weight: bold;
+  }
+
+  .path {
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .title {
+    padding: 10px;
+    text-align: center;
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.5);
   }
 }
 

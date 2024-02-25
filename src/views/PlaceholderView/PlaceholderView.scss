@@ -7,7 +7,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: $theme-color;
+  background-image: repeating-linear-gradient(
+                  45deg,
+                  $theme-color 0,
+                  $theme-color 40px,
+                  $theme-color-light 40px,
+                  $theme-color-light 80px
+  );
 
   * {
     padding: 10px;
