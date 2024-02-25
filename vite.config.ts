@@ -14,7 +14,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {
-        enabled: false
+        enabled: true
       },
       manifest: {
         'short_name': 'PersonaBook',
@@ -29,6 +29,12 @@ export default defineConfig({
             'src': '/logo.png',
             'sizes': '1024x1024',
             'type': 'image/png'
+          },
+          {
+            'src': '/maskable-icon-x512.png',
+            'sizes': '512x512',
+            'type': 'image/png',
+            'purpose': 'maskable'
           }
         ],
         'background_color': '#FFFFFF',
