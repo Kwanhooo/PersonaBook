@@ -54,7 +54,7 @@ function handleChange(val: number) {
     </div>
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
-        <el-table-column show-overflow-tooltip align="center" type="selection"></el-table-column>
+        <el-table-column align="center" type="selection"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="id" label="图书编号"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="title" label="图书名"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="category" label="图书类别"></el-table-column>
