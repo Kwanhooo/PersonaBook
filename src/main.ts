@@ -13,7 +13,6 @@ import setupStores from '@/stores'
 /**
  * Element-plus组件库
  */
-import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/theme-chalk/src/message.scss'
 
 /**
@@ -39,9 +38,6 @@ app.use(router) // 挂载vue路由
  */
 app.provide('$axios', axiosInstance) // 向下提供全局axios实例
 setupStores() // 初始化所有的pinia store
-for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
-  app.component(key, component)
-}// 注册element-plus的图标组件
 
 /**
  * 4.挂载应用

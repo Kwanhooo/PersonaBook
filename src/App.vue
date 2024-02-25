@@ -5,6 +5,11 @@ import BaseHeader from '@/layouts/BaseHeader/BaseHeader.vue'
 import BaseFooter from '@/layouts/BaseFooter/BaseFooter.vue'
 import type { RouteMetaProvider } from '@/interfaces/application/RouteMetaProvider'
 import logo from '@/assets/svg/logo.svg'
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+
+// 语言设置
+const locale = ref(zhCn)
 
 const $route = useRoute()
 const routeMeta = ref<RouteMetaProvider>($route.meta as RouteMetaProvider)
@@ -27,7 +32,9 @@ watchEffect(() => {
 </script>
 
 <template>
-  <BaseHeader v-if="isShowHeader" :title="headerTitle" :logo="headerLogo" />
-  <RouterView />
-  <BaseFooter v-if="isShowFooter" />
+  <el-config-provider :locale="locale">
+    <BaseHeader v-if="isShowHeader" :title="headerTitle" :logo="headerLogo" />
+    <RouterView />
+    <BaseFooter v-if="isShowFooter" />
+  </el-config-provider>
 </template>

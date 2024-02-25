@@ -33,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'book-info',
             name: 'book-info',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/BookManagement/BookInfoView/BookInfoView.vue'),
             meta: {
               title: '图书信息',
               isAuthRequired: true,
