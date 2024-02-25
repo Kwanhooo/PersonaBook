@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 250;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/YTVL2m7uAQhe.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/pxK43AzQf1wV.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 300;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/fzF7pk5OkjLW.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/bz4jwyya5EI2.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 400;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/hfsNMibjQ5hI.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/Q6goz9DpDtCg.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 500;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/zH422nXbRKx7.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/2Ga7kGUn4iB7.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 600;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/0BmKqcjs9eGd.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/YwdwuBM3jIgG.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 700;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/UKKnuaMIC3Ja.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/myFsV6tX1CTB.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 800;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/QALOQ5mO0PRc.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/IbU4sAoshv3b.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 900;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/MUOToT91s91k.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/N5IBmwyrOGo3.woff") format("woff");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "AlibabaPuHui";
+    font-weight: 1000;
+    src: url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/Bov9AP6F8hze.woff2") format("woff2"),
+    url("//at.alicdn.com/wf/webfont/ZglBQnoSXGCb/fJN8RKgXowRZ.woff") format("woff");
+    font-display: swap;
+}

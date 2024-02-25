@@ -1,13 +1,17 @@
+/* Fonts */
+@import "../font/alibaba-puhui.css";
+/*********/
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
     margin: 0;
-    font-weight: normal;
 }
 
 body {
-    font-family: Inter,
+    font-family: AlibabaPuHui,
+    Inter,
     -apple-system,
     BlinkMacSystemFont,
     'Segoe UI',
