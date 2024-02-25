@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import ratingData from '@/mock/rating-management-rating-details.json'
+import ratingData from '@/mock/comment-management-comment-details.json'
 
 const bookName = ref('')
 const userName = ref('')
 const dateRange = ref([])
-const searchKeyword = ref('')
+const sortOrder = ref('')
 
 const tableData = ref(ratingData)
 const pageSize = ref(10)
 const currentPage = ref(1)
 const total = ref(tableData.value.length)
 
-// 添加或修改函数以处理查询和重置操作
 function handleSearch() {
-  console.log('执行查询', { bookName: bookName.value, userName: userName.value, dateRange: dateRange.value })
+  console.log('执行查询', {
+    bookName: bookName.value,
+    userName: userName.value,
+    dateRange: dateRange.value,
+    sortOrder: sortOrder.value
+  })
   // 根据查询条件更新 tableData 或执行相关查询逻辑
 }
 
@@ -23,6 +27,7 @@ function handleReset() {
   bookName.value = ''
   userName.value = ''
   dateRange.value = []
+  sortOrder.value = ''
   // 重置查询后更新 tableData 或执行相关重置逻辑
 }
 
@@ -33,7 +38,7 @@ function handleChange(val: number) {
 </script>
 
 <template>
-  <div class="rating-details-view-wrapper">
+  <div class="comment-details-view-wrapper">
     <div class="control-group-wrapper">
       <el-form inline>
         <el-form-item label="图书">
@@ -66,6 +71,13 @@ function handleChange(val: number) {
             重置
           </el-button>
         </el-form-item>
+        <el-form-item label="排序">
+          <el-select v-model="sortOrder" placeholder="请选择" style="width: 130px">
+            <el-option label="按图书名升序" value="bookNameAsc"></el-option>
+            <el-option label="按图书名降序" value="bookNameDesc"></el-option>
+            <!-- 更多排序选项 -->
+          </el-select>
+        </el-form-item>
       </el-form>
     </div>
     <div class="table-wrapper">
@@ -74,8 +86,8 @@ function handleChange(val: number) {
         <el-table-column show-overflow-tooltip align="center" prop="bookName" label="图书名"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="username" label="用户名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="rating" label="评分"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="ratingTime" label="评分时间"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="comment" label="评论内容"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="commentTime" label="评论时间"></el-table-column>
       </el-table>
     </div>
     <div class="pagination-controller-wrapper">
@@ -93,5 +105,5 @@ function handleChange(val: number) {
 </template>
 
 <style scoped lang="scss">
-@import "./RatingDetailsView";
+@import "./CommentDetailsView";
 </style>

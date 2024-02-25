@@ -21,7 +21,7 @@ function handleChange(val: number) {
 </script>
 
 <template>
-  <div class="rating-info-view-wrapper">
+  <div class="comment-info-view-wrapper">
     <div class="control-group-wrapper">
       <div class="left">
         <el-input v-model="searchKeyword" placeholder="请输入图书信息" style="width:20rem;margin-right: 1rem" />

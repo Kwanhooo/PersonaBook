@@ -6,7 +6,6 @@ import ratingData from '@/mock/rating-management-rating-details.json'
 const bookName = ref('')
 const userName = ref('')
 const dateRange = ref([])
-const searchKeyword = ref('')
 
 const tableData = ref(ratingData)
 const pageSize = ref(10)
