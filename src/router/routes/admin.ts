@@ -223,7 +223,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'comment-info',
             name: 'comment-info',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/CommentManagement/CommentInfoView/CommentInfoView.vue'),
             meta: {
               title: '评论信息',
               isAuthRequired: true,

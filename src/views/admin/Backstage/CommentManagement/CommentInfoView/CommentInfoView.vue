@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import bookRatingData from '@/mock/rating-management-book-rating.json'
+import bookRatingData from '@/mock/comment-management-comment-info.json'
 
 const searchKeyword = ref('')
 
@@ -44,7 +44,7 @@ function handleChange(val: number) {
         <el-table-column min-width="50" align="center" type="index" label="序号"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="title" label="图书名"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="rating" label="总评分"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="amount" label="总评论数"></el-table-column>
         <el-table-column align="center" min-width="50" label="操作">
           <template #default="scope">
             <el-button type="text" @click="viewDetails(scope.row)">详情</el-button>
@@ -66,5 +66,5 @@ function handleChange(val: number) {
 </template>
 
 <style scoped lang="scss">
-@import "./RatingInfoView";
+@import "CommentInfoView";
 </style>
