@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import bookRatingData from '@/mock/book-management-book-rating.json' // 假设你有一个相似的JSON文件
+import bookRatingData from '@/mock/book-management-book-rating.json'
 
 const searchKeyword = ref('')
 

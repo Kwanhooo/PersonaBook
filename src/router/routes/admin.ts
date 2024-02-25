@@ -197,7 +197,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'rating-details',
             name: 'rating-details',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/RatingManagement/RatingDetailsView/RatingDetailsView.vue'),
             meta: {
               title: '评分详情',
               isAuthRequired: true,

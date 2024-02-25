@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import bookCategoryData from '@/mock/book-management-book-category.json' // 假设您有一个类似的JSON文件存储图书类别信息
+import bookCategoryData from '@/mock/book-management-book-category.json'
 
 const searchKeyword = ref('')
 
