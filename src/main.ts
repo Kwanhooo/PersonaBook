@@ -12,7 +12,9 @@ import setupStores from '@/stores'
 /**
  * Element-plus组件库
  */
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/theme-chalk/src/message.scss'
+
 
 /**
  * 动画库
@@ -31,6 +33,9 @@ const pinia = createPinia() // 创建pinia实例
 pinia.use(piniaPluginPersistedState) // pinia持久化
 app.use(pinia) // 挂载pinia
 app.use(router) // 挂载vue路由
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}// 注册element-plus的图标
 
 /**
  * 3.其它初始化
