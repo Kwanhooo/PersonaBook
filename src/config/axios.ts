@@ -11,7 +11,7 @@ axiosInstance.interceptors.request.use(
     // 如果有token，在请求头中加入token
     const token = localStorage.getItem('token')
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`
+      config.headers['Authorization'] = `${token}`
     }
     return config
   },
@@ -35,6 +35,6 @@ axiosInstance.interceptors.response.use(
 )
 
 // 测试是否已经有axios实例
-console.debug('axios实例创建成功', axiosInstance)
+console.log('axios实例创建成功', axiosInstance)
 
 export default axiosInstance

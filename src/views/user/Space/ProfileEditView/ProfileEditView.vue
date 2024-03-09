@@ -5,67 +5,65 @@ import { getNowDate } from '@/utils/timeHelper'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import cloneDeep from 'lodash.clonedeep'
 import $router from '@/router'
+import { updateInfo } from '@/requests/user'
+import type { UpdateInfoParam } from '@/interfaces/UpdateInfoParam'
 
 const userStore = useUserStore()
 const avatarUrl = ref('https://asset.0xcafebabe.cn/test.png')
 
 // 表单值
 const form = reactive({
-  email: '',// 必填
   nickname: '',// 必填
-  gender: '',
-  birth: '',
-  grade: '',
-  favoriteBookType: '',
+  email: '',// 必填
+  sex: false,
+  grade: 0,
+  favoriteType: '',
   favoriteMedia: '',
-  nationOrRegion: '',
-  district: '',
   address: ''
 })
 
-const initialForm = cloneDeep(form)
+// 初始化表单值
+form.email = userStore.user.email
+form.nickname = userStore.user.nickname
+form.sex = userStore.user.sex
+form.grade = userStore.user.grade
+form.favoriteType = userStore.user.favoriteType
+form.favoriteMedia = userStore.user.favoriteMedia
+form.address = userStore.user.address
+
+let originForm = cloneDeep(form)
 
 const formRef = ref<FormInstance>()
 
 const rules = {
   email: [
-    { required: true, message: '邮箱为必填项', trigger: 'blur' },
+    { required: false, message: '邮箱为必填项', trigger: 'blur' },
     { type: 'email', message: '请检查邮箱格式是否正确', trigger: ['blur', 'change'] }
   ],
   nickname: [
-    { required: true, message: '昵称为必填项', trigger: 'blur' }
+    { required: false, message: '昵称为必填项', trigger: 'blur' }
   ]
 } as FormRules
 
 const grades = ref([
-  { label: '一年级', value: '1' },
-  { label: '二年级', value: '2' },
-  { label: '三年级', value: '3' }
-  // TODO: 更多年级
+  { label: '一年级', value: 1 },
+  { label: '二年级', value: 2 },
+  { label: '三年级', value: 3 },
+  { label: '四年级', value: 4 },
+  { label: '五年级', value: 5 },
+  { label: '六年级', value: 6 }
 ])
 
 const bookTypes = ref([
-  { label: '科幻', value: 'sci-fi' },
-  { label: '文学', value: 'literature' }
+  { label: '科幻', value: '科幻' },
+  { label: '文学', value: '文学' }
   // TODO: 更多类型
 ])
 
 const medias = ref([
-  { label: '纸质书', value: 'paper' },
-  { label: '电子书', value: 'ebook' }
+  { label: '纸质书', value: '纸质书' },
+  { label: '电子书', value: '电子书' }
   // TODO: 更多媒介
-])
-
-const nations = ref([
-  { label: '中国', value: 'CN' },
-  { label: '美国', value: 'US' }
-  // TODO: 更多国家或地区
-])
-
-const districts = ref([
-  { label: '朝阳区', value: 'chaoyang' },
-  { label: '海淀区', value: 'haidian' }
-  // TODO: 更多行政区
 ])
 
 const beforeAvatarUpload = (file: File) => {
@@ -87,12 +85,29 @@ const handleAvatarSuccess = (res: any, file: any) => {
   avatarUrl.value = URL.createObjectURL(file.raw)
 }
 
-const submitForm = (formEl: FormInstance | undefined) => {
-  console.log(formEl)
+const submitForm = () => {
+  const updateInfoParam = {
+    nickname: form.nickname,
+    email: form.email,
+    sex: form.sex,
+    grade: form.grade,
+    favoriteType: form.favoriteType,
+    favoriteMedia: form.favoriteMedia,
+    address: form.address
+  } as UpdateInfoParam
+  updateInfo(updateInfoParam).then(res => {
+    if (res.data.code === 0) {
+      ElMessage.success('用户信息修改成功')
+      userStore.user = res.data.data
+      originForm = cloneDeep(form)
+    } else {
+      ElMessage.error('修改失败，请稍后再试！')
+    }
+  })
 }
 
 const resetForm = () => {
-  Object.assign(form, initialForm)
+  Object.assign(form, originForm)
 }
 
 </script>
@@ -127,14 +142,10 @@ const resetForm = () => {
           <el-link type="primary" @click="$router.push('/space/reset-password')">修改密码</el-link>
         </el-form-item>
         <el-form-item label="性别">
-          <el-select v-model="form.gender" placeholder="请选择">
-            <el-option label="男" value="male"></el-option>
-            <el-option label="女" value="female"></el-option>
-            <el-option label="其它" value="other"></el-option>
+          <el-select v-model="form.sex" placeholder="请选择">
+            <el-option label="男" :value="true"></el-option>
+            <el-option label="女" :value="false"></el-option>
           </el-select>
-        </el-form-item>
-        <el-form-item label="生日">
-          <el-date-picker v-model="form.birth" placeholder="请选择"></el-date-picker>
         </el-form-item>
         <el-form-item label="年级">
           <el-select v-model="form.grade" placeholder="请选择">
@@ -142,7 +153,7 @@ const resetForm = () => {
           </el-select>
         </el-form-item>
         <el-form-item label="喜爱的图书类别">
-          <el-select v-model="form.favoriteBookType" placeholder="请选择">
+          <el-select v-model="form.favoriteType" placeholder="请选择">
             <el-option v-for="item in bookTypes" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
@@ -151,21 +162,11 @@ const resetForm = () => {
             <el-option v-for="item in medias" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="国家或地区">
-          <el-select v-model="form.nationOrRegion" placeholder="请选择">
-            <el-option v-for="item in nations" :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="行政区">
-          <el-select v-model="form.district" placeholder="请选择">
-            <el-option v-for="item in districts" :key="item.value" :label="item.label" :value="item.value"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item label="详细地址">
           <el-input v-model="form.address"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm(formRef)">提交变更</el-button>
+          <el-button type="primary" @click="submitForm()">提交变更</el-button>
           <el-button @click="resetForm()">重置</el-button>
         </el-form-item>
       </el-form>

@@ -31,10 +31,13 @@ export const useUserStore = defineStore({
             return
           }
           // 登录成功，将用户信息保存到store中
-          this.user = res.data.data
+          this.user = res.data.data.userInfo
+          // 保存token
+          localStorage.setItem('token', res.data.data.token)
           // 跳转主页
           $router.push('/')
           ElMessage.success(this.user.nickname + '，欢迎回来！')
+          console.log(this.user)
         })
       } else {
         adminLogin(loginParam).then((res) => {
@@ -84,9 +87,11 @@ export const useUserStore = defineStore({
     // TODO: 生产环境中移除 - 模拟登录
     mockLogin() {
       this.user = {
+        address: '', email: '', favoriteMedia: '', favoriteType: '', grade: 0, sex: false,
+        regTime: '', userId: '',
         username: 'dev-user-8209200504',
         role: UserRole.USER,
-        is_valid: UserValid.VALID,
+        isValid: UserValid.VALID,
         nickname: '李菌耗'
       }
       localStorage.setItem('token', 'TEST_TOKEN')
@@ -95,9 +100,11 @@ export const useUserStore = defineStore({
     },
     mockAdminLogin() {
       this.user = {
+        address: '', email: '', favoriteMedia: '', favoriteType: '', grade: 0, sex: false,
+        regTime: '', userId: '',
         username: 'dev-admin-0000000001',
         role: UserRole.ADMIN,
-        is_valid: UserValid.VALID,
+        isValid: UserValid.VALID,
         nickname: '管理员'
       }
       localStorage.setItem('token', 'ADMIN_TEST_TOKEN')
