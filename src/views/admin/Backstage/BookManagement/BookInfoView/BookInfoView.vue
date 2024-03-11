@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type Ref, ref } from 'vue'
+import { reactive, ref, type Ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
 import type { Book } from '@/interfaces/entity/Book'
 import type { BookManagementGetBooksParam } from '@/interfaces/BookManagementGetBooksParam'
@@ -12,12 +12,29 @@ const pageSize = ref(10)
 const currentPage = ref(1)
 const total = ref(tableData.value.length)
 
-function viewDetails(row: any) {
-  console.log('查看详情', row)
-}
+// 弹窗
+const dialogFormVisible = ref(false)
+const formLabelWidth = '140px'
+const form = reactive({
+  fileId: null,
+  fileTitle: null,
+  fileAbstract: null,
+  fileTag: null,
+  fileAuthor: null,
+  fileIsbn: null,
+  filePress: null,
+  fileComingTime: null,
+  filePageSize: null
+})
 
 function editBook(row: any) {
   console.log('编辑图书', row)
+  Object.assign(form, row)
+  dialogFormVisible.value = true
+}
+
+function handleEditSave(){
+  dialogFormVisible = false
 }
 
 function deleteBook(row: any) {
@@ -25,11 +42,9 @@ function deleteBook(row: any) {
 }
 
 function handleChange(val: number) {
-  console.log('当前页: ', val)
   currentPage.value = val
   refreshBookInfoData()
 }
-
 
 const refreshBookInfoData = () => {
   const getBooksParam = {
@@ -45,11 +60,35 @@ const refreshBookInfoData = () => {
   })
 }
 
+// 初始化表格数据
 refreshBookInfoData()
 </script>
 
 <template>
   <div class="book-info-view-wrapper">
+    <!-- 编辑图书信息的弹窗 -->
+    <el-dialog v-model="dialogFormVisible" title="Shipping address" width="500">
+      <el-form :model="form">
+        <el-form-item label="Promotion name" :label-width="formLabelWidth">
+          <el-input v-model="form.name" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="Zones" :label-width="formLabelWidth">
+          <el-select v-model="form.region" placeholder="Please select a zone">
+            <el-option label="Zone No.1" value="shanghai" />
+            <el-option label="Zone No.2" value="beijing" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="dialogFormVisible = false">取消</el-button>
+          <el-button type="primary" @click="handleEditSave()">
+            确认变更
+          </el-button>
+        </div>
+      </template>
+    </el-dialog>
+    <!-------------->
     <div class="control-group-wrapper">
       <div class="left">
         <el-input v-model="searchKeyword" placeholder="请输入图书信息" style="width:20rem;margin-right: 1rem" />
@@ -86,7 +125,6 @@ refreshBookInfoData()
         <el-table-column show-overflow-tooltip align="center" prop="fileAbstract" label="摘要"></el-table-column>
         <el-table-column align="center" min-width="150px" label="操作">
           <template #default="scope">
-            <el-button type="text" @click="viewDetails(scope.row)">详情</el-button>
             <el-button type="text" @click="editBook(scope.row)">编辑</el-button>
             <el-button type="text" @click="deleteBook(scope.row)" style="color: #BD3124">删除</el-button>
           </template>
