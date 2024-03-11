@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { type Ref, ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import bookInfoData from '@/mock/book-management-book-info.json'
+import type { Book } from '@/interfaces/entity/Book'
+import type { BookManagementGetBooksParam } from '@/interfaces/BookManagementGetBooksParam'
+import { getBooks } from '@/requests/admin/bookManagement'
 
 const searchKeyword = ref('')
-
+const bookInfoData = ref([]) as Ref<Book[]>
 const tableData = ref(bookInfoData)
 const pageSize = ref(10)
 const currentPage = ref(1)
@@ -25,7 +27,25 @@ function deleteBook(row: any) {
 function handleChange(val: number) {
   console.log('当前页: ', val)
   currentPage.value = val
+  refreshBookInfoData()
 }
+
+
+const refreshBookInfoData = () => {
+  const getBooksParam = {
+    pageNum: currentPage.value,
+    pageSize: pageSize.value,
+    orderBy: 'time'
+  } as BookManagementGetBooksParam
+  console.log(getBooksParam)
+  getBooks(getBooksParam).then((res) => {
+    console.log(res.data.data)
+    total.value = res.data.data.total
+    bookInfoData.value = res.data.data.records
+  })
+}
+
+refreshBookInfoData()
 </script>
 
 <template>
@@ -55,15 +75,15 @@ function handleChange(val: number) {
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
         <el-table-column align="center" type="selection"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="id" label="图书编号"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="title" label="图书名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="category" label="图书类别"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="author" label="作者"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="publisher" label="出版社"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="publishYear" label="出版年份"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="pages" label="页数"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="summary" label="摘要"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileId" label="图书编号"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileTitle" label="图书名"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileTag" label="图书类别"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileIsbn" label="ISBN"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileAuthor" label="作者"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="filePress" label="出版社"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileComingTime" label="出版年份"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="filePageSize" label="页数"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileAbstract" label="摘要"></el-table-column>
         <el-table-column align="center" min-width="150px" label="操作">
           <template #default="scope">
             <el-button type="text" @click="viewDetails(scope.row)">详情</el-button>
