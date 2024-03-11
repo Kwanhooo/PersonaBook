@@ -6,10 +6,10 @@ import type { UpdateInfoParam } from '@/interfaces/UpdateInfoParam'
 import { backendBaseUrl } from '@/config/server'
 
 const UserAPI = {
-  register: backendBaseUrl + '/account/register',
-  login: backendBaseUrl + '/account/login',
-  info: backendBaseUrl + '/account/login_user',
-  updateInfo: backendBaseUrl + '/account/update_info'
+  register: `${backendBaseUrl}/account/register`,
+  login: `${backendBaseUrl}/account/login`,
+  info: `${backendBaseUrl}/account/login_user`,
+  updateInfo: `${backendBaseUrl}/account/update_info`
 }
 
 /**
@@ -56,6 +56,10 @@ export function info() {
   })
 }
 
+/**
+ * 更新用户信息
+ * @param data
+ */
 export function updateInfo(data: UpdateInfoParam) {
   return axiosInstance({
     url: UserAPI.updateInfo,
