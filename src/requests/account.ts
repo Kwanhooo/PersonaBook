@@ -3,14 +3,13 @@ import { MimeType } from '@/interfaces/constant/mimeType'
 import type { LoginParam } from '@/interfaces/LoginParam'
 import type { RegisterParam } from '@/interfaces/RegisterParam'
 import type { UpdateInfoParam } from '@/interfaces/UpdateInfoParam'
-
-const baseURL = 'http://192.168.43.29:8080'
+import { backendBaseUrl } from '@/config/server'
 
 const UserAPI = {
-  register: baseURL + '/account/register',
-  login: baseURL + '/account/login',
-  info: baseURL + '/account/login_user',
-  updateInfo: baseURL + '/account/update_info'
+  register: backendBaseUrl + '/account/register',
+  login: backendBaseUrl + '/account/login',
+  info: backendBaseUrl + '/account/login_user',
+  updateInfo: backendBaseUrl + '/account/update_info'
 }
 
 /**

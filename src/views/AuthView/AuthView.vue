@@ -68,6 +68,7 @@ ElMessage.warning({
           style="margin-bottom: 1rem;"
         />
         <el-input
+          type="password"
           v-model="password"
           size="large"
           placeholder="密码"

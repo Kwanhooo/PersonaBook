@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import type { User } from '@/interfaces/entity/User'
-import { login as userLogin, register as userRegister } from '@/requests/user'
+import { login as userLogin, register as userRegister } from '@/requests/account'
 import { login as adminLogin } from '@/requests/admin/user'
 import $router from '@/router'
 import { ElMessage } from 'element-plus'

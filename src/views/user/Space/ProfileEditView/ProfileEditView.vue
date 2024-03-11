@@ -5,7 +5,7 @@ import { getNowDate } from '@/utils/timeHelper'
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import cloneDeep from 'lodash.clonedeep'
 import $router from '@/router'
-import { updateInfo } from '@/requests/user'
+import { updateInfo } from '@/requests/account'
 import type { UpdateInfoParam } from '@/interfaces/UpdateInfoParam'
 
 const userStore = useUserStore()
@@ -22,7 +22,7 @@ const form = reactive({
   address: ''
 })
 
-// 初始化表单值
+// 从Store初始化表单值
 form.email = userStore.user.email
 form.nickname = userStore.user.nickname
 form.sex = userStore.user.sex
@@ -37,11 +37,11 @@ const formRef = ref<FormInstance>()
 
 const rules = {
   email: [
-    { required: false, message: '邮箱为必填项', trigger: 'blur' },
+    { required: true, message: '邮箱为必填项', trigger: 'blur' },
     { type: 'email', message: '请检查邮箱格式是否正确', trigger: ['blur', 'change'] }
   ],
   nickname: [
-    { required: false, message: '昵称为必填项', trigger: 'blur' }
+    { required: true, message: '昵称为必填项', trigger: 'blur' }
   ]
 } as FormRules
 
@@ -98,6 +98,7 @@ const submitForm = () => {
   updateInfo(updateInfoParam).then(res => {
     if (res.data.code === 0) {
       ElMessage.success('用户信息修改成功')
+      //
       userStore.user = res.data.data
       originForm = cloneDeep(form)
     } else {
