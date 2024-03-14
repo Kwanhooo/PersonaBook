@@ -122,17 +122,17 @@ const refreshBookInfoData = () => {
   })
 }
 
-const handleTableSelectionChange = (val) => {
+const handleTableSelectionChange = (val: any) => {
   multipleSelection.value = val
   console.log(multipleSelection.value)
 }
 
 
-function handleRemove(f, fileList) {
+function handleRemove() {
   file.value = null
 }
 
-function handleFileListChange(f) {
+function handleFileListChange(f: any) {
   file.value = f
   console.log(file.value)
 }
