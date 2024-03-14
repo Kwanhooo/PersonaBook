@@ -4,6 +4,7 @@ import $router from '@/router'
 
 const props = defineProps({
   id: Number,
+  no: String,
   title: String,
   subtitle: String,
   cover: String,
@@ -21,8 +22,8 @@ const props = defineProps({
 
 const goToBookDetail = () => {
   // TODO: 图书详情跳转
-  console.log('go to book detail', props.id)
-  $router.push('/detail?id=' + props.id)
+  console.log('go to book detail', props.no)
+  $router.push('/book-detail?bookNo=' + props.no)
 }
 </script>
 

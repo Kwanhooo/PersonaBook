@@ -5,7 +5,7 @@ import type { RegisterParam } from '@/interfaces/RegisterParam'
 import type { UpdateInfoParam } from '@/interfaces/UpdateInfoParam'
 import { backendBaseUrl } from '@/config/server'
 
-const UserAPI = {
+const AccountAPI = {
   register: `${backendBaseUrl}/account/register`,
   login: `${backendBaseUrl}/account/login`,
   info: `${backendBaseUrl}/account/login_user`,
@@ -18,7 +18,7 @@ const UserAPI = {
  */
 export function register(data: RegisterParam) {
   return axiosInstance({
-    url: UserAPI.register,
+    url: AccountAPI.register,
     headers: {
       'Content-Type': MimeType.formData
     },
@@ -33,7 +33,7 @@ export function register(data: RegisterParam) {
  */
 export function login(data: LoginParam) {
   return axiosInstance({
-    url: UserAPI.login,
+    url: AccountAPI.login,
     headers: {
       'Content-Type': MimeType.formData
     },
@@ -47,7 +47,7 @@ export function login(data: LoginParam) {
  */
 export function info() {
   return axiosInstance({
-    url: UserAPI.info,
+    url: AccountAPI.info,
     headers: {
       'Content-Type': MimeType.json,
       'Authorization': localStorage.getItem('token')
@@ -62,7 +62,7 @@ export function info() {
  */
 export function updateInfo(data: UpdateInfoParam) {
   return axiosInstance({
-    url: UserAPI.updateInfo,
+    url: AccountAPI.updateInfo,
     headers: {
       'Content-Type': MimeType.json
     },

@@ -109,6 +109,19 @@ const routes: Array<RouteRecordRaw> = [
         } as RouteMetaProvider
       }
     ]
+  },
+  {
+    path: '/book-detail',
+    name: 'book-detail',
+    // @ts-ignore
+    component: () => import('@/views/user/BookDetailView/BookDetailView.vue'),
+    meta: {
+      title: '图书详情',
+      isAuthRequired: false,
+      isShowFooter: false,
+      isShowHeader: true,
+      role: UserRole.GUEST
+    } as RouteMetaProvider
   }
 ]
 

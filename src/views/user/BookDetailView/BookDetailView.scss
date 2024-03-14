@@ -1,0 +1,118 @@
+$book-thumbnail-size-ratio: 4.5;
+$book-thumbnail-wanted-width: calc($book-thumbnail-size-ratio * 3rem);
+$book-thumbnail-wanted-height: calc($book-thumbnail-size-ratio * 4rem);
+
+.book-detail-view-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 5rem;
+
+  .top-bar-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .book-info-wrapper {
+    height: $book-thumbnail-wanted-height;
+
+    display: flex;
+    flex-direction: row;
+
+    .left {
+      height: 100%;
+      width: $book-thumbnail-wanted-width;
+
+      .cover-image {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .middle {
+      //background: red;
+      height: 100%;
+      flex: 1;
+      padding-left: 2.5rem;
+
+      .wrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .book-name {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+
+        .favorite-info {
+          font-size: 2rem;
+          margin-left: 5rem;
+          display: flex;
+          flex-direction: row;
+
+          .group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &:not(:first-child) {
+              margin-left: 2.5rem;
+            }
+
+            .icon {
+              width: 2rem;
+              height: 2rem;
+            }
+
+            .amount {
+              margin-top: .1rem;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+
+      .author {
+        margin-top: 1rem;
+        font-size: 1.2rem;
+      }
+    }
+
+    .right {
+      height: 100%;
+      width: fit-content;
+
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .detail-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+
+      &:not(:first-child) {
+        margin-top: .4rem;
+      }
+
+      .key {
+        width: 13rem;
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .value {
+        font-size: 1rem;
+      }
+    }
+  }
+}
