@@ -11,12 +11,14 @@ const props = defineProps({
 
 <template>
   <div class="comment-item-wrapper">
-    <div class="avatar-wrapper">
-      <img class="avatar-img" :src="props.avatar" alt="avatar">
-    </div>
-    <div class="content-wrapper">
+    <div class="userinfo-wrapper">
+      <div class="avatar-wrapper">
+        <img class="avatar-img" :src="props.avatar" alt="avatar">
+      </div>
       <div class="username">{{ username }}</div>
       <div class="time">{{ time }}</div>
+    </div>
+    <div class="content-wrapper">
       <div class="comment">{{ comment }}</div>
     </div>
   </div>

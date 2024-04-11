@@ -14,7 +14,6 @@ import type { GetFileCommentsParam } from '@/interfaces/GetFileCommentsParam'
 import type { CommentFileParam } from '@/interfaces/CommentFileParam'
 
 const $route = useRoute()
-const value = ref(0)
 const myRate = ref(0)
 const readerRate = ref(0)
 const commentAmount = ref(0)
@@ -22,7 +21,6 @@ const commentPageSize = ref(5)
 const commentCurrentPage = ref(1)
 const commentRecords = ref()
 const myComment = ref('')
-const isMyRateReadOnly = ref(false)
 const bookEntity = ref({
   previewPicture: '',
   fileTitle: '载入中',
@@ -171,6 +169,9 @@ const handleCommentSend = () => {
         <el-button color="#2779D6" style="width: 8rem;height: 2.5rem;margin-top: 2rem" @click.prevent="goToReader()">
           阅读本书
         </el-button>
+        <div style="margin-top: 2rem;font-size: 1rem;margin-right: 10rem;color: #333333">
+          {{ bookEntity.fileAbstract }}
+        </div>
       </div>
       <div class="right">
         <div class="title">读者评分</div>
@@ -225,7 +226,7 @@ const handleCommentSend = () => {
       </div>
       <div class="container">
         <CommentItem v-for="c in commentRecords" v-bind:key="c.id"
-                     avatar="https://asset.0xcafebabe.cn/test.png"
+                     avatar="https://asset.0xcafebabe.cn/avatar.jpg"
                      :username="c.name"
                      :comment="c.commentContent"
                      :time="c.commentTime"
@@ -235,7 +236,7 @@ const handleCommentSend = () => {
         <el-pagination background layout="prev, pager, next"
                        :total="commentAmount"
                        :page-size="commentPageSize"
-                       @change="handleCommentCurrentChange()"
+                       @change="handleCommentCurrentChange"
         />
       </div>
     </div>
