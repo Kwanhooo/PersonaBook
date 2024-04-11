@@ -9,9 +9,13 @@ export interface Book {
   previewRealObject: string;
   fileReadTimes: number;
   fileLikeTimes: number;
+  fileCollectTimes: number;
   fileAuthor: string;
   fileIsbn: string;
   filePress: string;
   fileComingTime: string;
   filePageSize: number;
+  userCollectStatus: boolean;
+  userScore: number;
+  fileHiddenScore: number;
 }

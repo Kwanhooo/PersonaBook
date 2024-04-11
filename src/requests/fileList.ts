@@ -4,7 +4,7 @@ import type { HomeViewNewBooksParam } from '@/interfaces/HomeViewNewBooksParam'
 import type { HomeViewRecommendBooksParam } from '@/interfaces/HomeViewRecommendBooksParam'
 
 const FileListAPI = {
-  getHomeViewNewBooks: `${backendBaseUrl}/fileList/getFilesByCondition`
+  getFilesByCondition: `${backendBaseUrl}/fileList/getFilesByCondition`
 }
 
 /**
@@ -13,7 +13,7 @@ const FileListAPI = {
  */
 export function getHomeViewNewBooks(data: HomeViewNewBooksParam) {
   return axiosInstance({
-    url: FileListAPI.getHomeViewNewBooks + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + 'time',
+    url: FileListAPI.getFilesByCondition + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + 'time',
     method: 'get'
   })
 }
@@ -25,7 +25,7 @@ export function getHomeViewNewBooks(data: HomeViewNewBooksParam) {
 // TODO: 把orderBy改成recommend
 export function getHomeViewRecommendBooks(data: HomeViewRecommendBooksParam) {
   return axiosInstance({
-    url: FileListAPI.getHomeViewNewBooks + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + 'time',
+    url: FileListAPI.getFilesByCondition + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + 'time',
     method: 'get'
   })
 }

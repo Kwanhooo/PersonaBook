@@ -2,23 +2,32 @@
 import { type Ref, ref } from 'vue'
 import type { Book } from '@/interfaces/entity/Book'
 import { useRoute } from 'vue-router'
-import { collectFile, getBookDetail, scoreFile } from '@/requests/fileFunction'
+import { collectFile, commentFile, getBookDetail, getFileComments, scoreFile } from '@/requests/fileFunction'
 import $router from '@/router'
 import { readerBackendUrl } from '@/config/server'
 import { ChatDotRound, ChatLineRound, ChatRound } from '@element-plus/icons-vue'
 import type { ScoreFileParam } from '@/interfaces/ScoreFileParam'
 import { ElMessage } from 'element-plus'
 import type { CollectFileParam } from '@/interfaces/CollectFileParam'
+import CommentItem from '@/components/CommentItem/CommentItem.vue'
+import type { GetFileCommentsParam } from '@/interfaces/GetFileCommentsParam'
+import type { CommentFileParam } from '@/interfaces/CommentFileParam'
 
 const $route = useRoute()
 const value = ref(0)
 const myRate = ref(0)
+const readerRate = ref(0)
+const commentAmount = ref(0)
+const commentPageSize = ref(5)
+const commentCurrentPage = ref(1)
+const commentRecords = ref()
+const myComment = ref('')
 const isMyRateReadOnly = ref(false)
 const bookEntity = ref({
   previewPicture: '',
   fileTitle: '载入中',
   fileAuthor: '载入中',
-  fileLikeTimes: 0,
+  fileCollectTimes: 0,
   fileReadTimes: 0,
   fileIsbn: '载入中',
   filePress: '载入中',
@@ -28,12 +37,38 @@ const bookEntity = ref({
 
 const bookNo = $route.query.bookNo
 
+const initComments = () => {
+  const getCommentParam = {
+    fileNo: bookNo,
+    pageNum: commentCurrentPage.value,
+    pageSize: commentPageSize.value,
+    orderBy: 'time'
+  } as GetFileCommentsParam
+
+  getFileComments(getCommentParam).then(res => {
+    console.log(res.data.data)
+    commentRecords.value = res.data.data.records
+    commentAmount.value = res.data.data.total
+  })
+}
+
 const initData = () => {
   getBookDetail(typeof bookNo === 'string' ? bookNo : '').then(res => {
     console.log(res.data.data)
     bookEntity.value = res.data.data
+
+    if (bookEntity.value.userScore == null)
+      myRate.value = 0
+    else
+      myRate.value = bookEntity.value.userScore
+
+    readerRate.value = bookEntity.value.fileHiddenScore
   })
+
+
+  initComments()
 }
+
 
 // 初始化图书详情数据
 initData()
@@ -54,9 +89,10 @@ const handleSubmitRate = () => {
   scoreFile(data).then(res => {
     if (res.data.code === 1)
       ElMessage.error(res.data.message)
-    else
+    else {
       ElMessage.success(res.data.data)
-    isMyRateReadOnly.value = true
+      bookEntity.value.userScore = myRate.value
+    }
   })
 }
 
@@ -70,12 +106,29 @@ const handleSubmitCollect = () => {
     else {
       if (res.data.data === '收藏成功') {
         ElMessage.success(res.data.data)
-        bookEntity.value.fileLikeTimes++
+        bookEntity.value.fileCollectTimes++
+        bookEntity.value.userCollectStatus = true
       } else {
         ElMessage.success(res.data.data)
-        bookEntity.value.fileLikeTimes--
+        bookEntity.value.fileCollectTimes--
+        bookEntity.value.userCollectStatus = false
       }
     }
+  })
+}
+
+const handleCommentCurrentChange = (val: number) => {
+  commentCurrentPage.value = val
+}
+
+const handleCommentSend = () => {
+  const commentFileParam = {
+    fileNo: bookNo,
+    content: myComment.value
+  } as CommentFileParam
+  commentFile(commentFileParam).then(res => {
+    console.log(res.data.data)
+    initComments()
   })
 }
 </script>
@@ -101,9 +154,12 @@ const handleSubmitCollect = () => {
           <div class="book-name">{{ bookEntity.fileTitle }}</div>
           <div class="favorite-info">
             <div class="group">
-              <img class="icon" src="@/assets/svg/icon-star.svg" style="cursor: pointer;"
+              <img v-if="!bookEntity.userCollectStatus" class="icon" src="@/assets/svg/icon-star-empty.svg"
+                   style="cursor: pointer;"
                    @click="handleSubmitCollect()">
-              <div class="amount">{{ bookEntity.fileLikeTimes }}</div>
+              <img v-else class="icon" src="@/assets/svg/icon-star.svg" style="cursor: pointer;"
+                   @click="handleSubmitCollect()">
+              <div class="amount">{{ bookEntity.fileCollectTimes }}</div>
             </div>
             <div class="group">
               <img class="icon" src="@/assets/svg/icon-read.svg">
@@ -119,7 +175,7 @@ const handleSubmitCollect = () => {
       <div class="right">
         <div class="title">读者评分</div>
         <el-rate
-          v-model="value"
+          v-model="readerRate"
           disabled
           size="large"
           show-score
@@ -137,11 +193,11 @@ const handleSubmitCollect = () => {
             :void-icon="ChatRound"
             text-color="#ff9900"
             score-template="{value}"
-            :disabled="isMyRateReadOnly"
+            :disabled="bookEntity.userScore!=null"
             :colors="['#FF9900','#409eff', '#67c23a' ]"
           />
           <div style="margin-top: 1rem">
-            <el-button @click="handleSubmitRate()" :disabled="isMyRateReadOnly">提交评分</el-button>
+            <el-button @click="handleSubmitRate()" v-if="bookEntity.userScore==null">提交评分</el-button>
           </div>
         </div>
       </div>
@@ -160,8 +216,43 @@ const handleSubmitCollect = () => {
         <div class="value">{{ bookEntity.fileTag }}</div>
       </div>
     </div>
-    <div class="recommend-wrapper"></div>
-    <div class="comment-wrapper"></div>
+    <div class="recommend-wrapper">
+
+    </div>
+    <div class="comment-wrapper">
+      <div class="title">
+        图书评论（{{ commentAmount }}）
+      </div>
+      <div class="container">
+        <CommentItem v-for="c in commentRecords" v-bind:key="c.id"
+                     avatar="https://asset.0xcafebabe.cn/test.png"
+                     :username="c.name"
+                     :comment="c.commentContent"
+                     :time="c.commentTime"
+        />
+      </div>
+      <div class="pagination-wrapper">
+        <el-pagination background layout="prev, pager, next"
+                       :total="commentAmount"
+                       :page-size="commentPageSize"
+                       @change="handleCommentCurrentChange()"
+        />
+      </div>
+    </div>
+    <div class="send-comment-wrapper">
+      <el-input
+        class="textarea"
+        v-model="myComment"
+        maxlength="100"
+        placeholder="在这里输入你的评论..."
+        show-word-limit
+        type="textarea"
+        style="font-size: 1rem"
+      />
+      <button class="send-button" @click="handleCommentSend()">
+        发送
+      </button>
+    </div>
   </div>
 </template>
 

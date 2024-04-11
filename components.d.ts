@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BookThumbnail: typeof import('./src/components/BookThumbnail/BookThumbnail.vue')['default']
+    CommentItem: typeof import('./src/components/CommentItem/CommentItem.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
     ElBacktop: typeof import('element-plus/es')['ElBacktop']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -50,7 +51,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
-
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }

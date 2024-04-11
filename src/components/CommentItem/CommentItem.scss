@@ -1,0 +1,42 @@
+@import "@/assets/style/variables";
+
+.comment-item-wrapper {
+  width: 100%;
+  min-height: 10rem;
+  margin: 10px 0;
+  display: flex;
+
+  .avatar-wrapper {
+    align-content: center;
+    justify-content: center;
+
+    .avatar-img {
+      width: 5rem;
+      height: 5rem;
+    }
+  }
+
+  .content-wrapper {
+    margin: 1rem 2rem;
+
+    .username {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .time {
+      margin-top: .5rem;
+      font-size: 1rem;
+      color: #444444;
+    }
+
+    .comment {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+hr {
+  border: 1px solid $theme-color;
+}
