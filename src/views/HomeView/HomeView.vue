@@ -84,7 +84,7 @@ initRecommendBooksData()
       <Carousel />
       <div v-if="isUserLoggedIn()" class="recommend-wrapper">
         <div class="title">为您推荐</div>
-        <div class="books-wrapper">
+        <div class="books-wrapper" v-if="recommendBooks.length!==0">
           <BookThumbnail v-for="b in recommendBooks"
                          v-bind:key="b.fileId"
                          v-bind:id="b.fileId"
@@ -95,10 +95,13 @@ initRecommendBooksData()
           />
           <i class="placeholder" v-for="p in 20" v-bind:key="p" />
         </div>
+        <div class="books-wrapper" v-else>
+          <el-skeleton :rows="10" animated />
+        </div>
       </div>
       <div class="recommend-wrapper">
         <div class="title">新书速递</div>
-        <div class="books-wrapper">
+        <div class="books-wrapper" v-if="newBooks.length!==0">
           <BookThumbnail v-for="b in newBooks"
                          v-bind:key="b.fileId"
                          v-bind:id="b.fileId"
@@ -107,6 +110,9 @@ initRecommendBooksData()
                          v-bind:cover="b.previewPicture"
           />
           <i class="placeholder" v-for="p in 10" v-bind:key="p" />
+        </div>
+        <div class="books-wrapper" v-else>
+          <el-skeleton :rows="10" animated />
         </div>
       </div>
       <div>
