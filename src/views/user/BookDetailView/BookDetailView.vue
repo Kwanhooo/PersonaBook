@@ -4,6 +4,7 @@ import type { Book } from '@/interfaces/entity/Book'
 import { useRoute } from 'vue-router'
 import { getBookDetail } from '@/requests/fileFunction'
 import $router from '@/router'
+import { readerBackendUrl } from '@/config/server'
 
 const $route = useRoute()
 const value = ref(0)
@@ -15,11 +16,13 @@ const bookEntity = ref({
   fileReadTimes: 0,
   fileIsbn: '载入中',
   filePress: '载入中',
-  fileTag: '载入中'
+  fileTag: '载入中',
+  previewRealObject: ''
 }) as Ref<Book>
 
+const bookNo = $route.query.bookNo
+
 const initData = () => {
-  const bookNo = $route.query.bookNo
   getBookDetail(typeof bookNo === 'string' ? bookNo : '').then(res => {
     console.log(res.data.data)
     bookEntity.value = res.data.data
@@ -28,6 +31,12 @@ const initData = () => {
 
 // 初始化图书详情数据
 initData()
+
+const goToReader = () => {
+  // $router.push('reader?object=' + encodeURI(bookEntity.value.previewRealObject))
+  console.log(bookEntity.value.previewRealObject)
+  window.open(`${readerBackendUrl}?bookPath=${encodeURIComponent(bookEntity.value.previewRealObject)}`, '_blank')
+}
 </script>
 
 <template>
@@ -61,7 +70,9 @@ initData()
           </div>
         </div>
         <div class="author">作者：{{ bookEntity.fileAuthor }}</div>
-        <el-button color="#2779D6" style="width: 8rem;height: 2.5rem;margin-top: 2rem">阅读本书</el-button>
+        <el-button color="#2779D6" style="width: 8rem;height: 2.5rem;margin-top: 2rem" @click.prevent="goToReader()">
+          阅读本书
+        </el-button>
       </div>
       <div class="right">
         <div class="title">读者评分</div>

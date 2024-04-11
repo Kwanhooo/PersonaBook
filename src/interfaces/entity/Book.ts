@@ -6,6 +6,7 @@ export interface Book {
   fileType: string;
   fileTag: string;
   previewPicture: string;
+  previewRealObject: string;
   fileReadTimes: number;
   fileLikeTimes: number;
   fileAuthor: string;
