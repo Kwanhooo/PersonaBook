@@ -2,12 +2,18 @@
 import { type Ref, ref } from 'vue'
 import type { Book } from '@/interfaces/entity/Book'
 import { useRoute } from 'vue-router'
-import { getBookDetail } from '@/requests/fileFunction'
+import { collectFile, getBookDetail, scoreFile } from '@/requests/fileFunction'
 import $router from '@/router'
 import { readerBackendUrl } from '@/config/server'
+import { ChatDotRound, ChatLineRound, ChatRound } from '@element-plus/icons-vue'
+import type { ScoreFileParam } from '@/interfaces/ScoreFileParam'
+import { ElMessage } from 'element-plus'
+import type { CollectFileParam } from '@/interfaces/CollectFileParam'
 
 const $route = useRoute()
 const value = ref(0)
+const myRate = ref(0)
+const isMyRateReadOnly = ref(false)
 const bookEntity = ref({
   previewPicture: '',
   fileTitle: '载入中',
@@ -37,6 +43,41 @@ const goToReader = () => {
   console.log(bookEntity.value.previewRealObject)
   window.open(`${readerBackendUrl}?bookPath=${encodeURIComponent(bookEntity.value.previewRealObject)}`, '_blank')
 }
+
+const icons = [ChatRound, ChatLineRound, ChatDotRound]
+
+const handleSubmitRate = () => {
+  const data = {
+    fileNo: bookNo,
+    score: myRate.value
+  } as ScoreFileParam
+  scoreFile(data).then(res => {
+    if (res.data.code === 1)
+      ElMessage.error(res.data.message)
+    else
+      ElMessage.success(res.data.data)
+    isMyRateReadOnly.value = true
+  })
+}
+
+const handleSubmitCollect = () => {
+  const data = {
+    fileNo: bookNo
+  } as CollectFileParam
+  collectFile(data).then(res => {
+    if (res.data.code === 1)
+      ElMessage.error(res.data.message)
+    else {
+      if (res.data.data === '收藏成功') {
+        ElMessage.success(res.data.data)
+        bookEntity.value.fileLikeTimes++
+      } else {
+        ElMessage.success(res.data.data)
+        bookEntity.value.fileLikeTimes--
+      }
+    }
+  })
+}
 </script>
 
 <template>
@@ -60,7 +101,8 @@ const goToReader = () => {
           <div class="book-name">{{ bookEntity.fileTitle }}</div>
           <div class="favorite-info">
             <div class="group">
-              <img class="icon" src="@/assets/svg/icon-heart.svg">
+              <img class="icon" src="@/assets/svg/icon-star.svg" style="cursor: pointer;"
+                   @click="handleSubmitCollect()">
               <div class="amount">{{ bookEntity.fileLikeTimes }}</div>
             </div>
             <div class="group">
@@ -81,9 +123,27 @@ const goToReader = () => {
           disabled
           size="large"
           show-score
+          allow-half
           text-color="#ff9900"
-          score-template="{value} 分"
+          score-template="{value}"
         />
+        <div style="margin-top: 4rem">
+          <div class="title">我的评分</div>
+          <el-rate
+            v-model="myRate"
+            :icons="icons"
+            size="large"
+            show-score
+            :void-icon="ChatRound"
+            text-color="#ff9900"
+            score-template="{value}"
+            :disabled="isMyRateReadOnly"
+            :colors="['#FF9900','#409eff', '#67c23a' ]"
+          />
+          <div style="margin-top: 1rem">
+            <el-button @click="handleSubmitRate()" :disabled="isMyRateReadOnly">提交评分</el-button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="detail-info-wrapper">
