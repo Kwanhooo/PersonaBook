@@ -34,7 +34,7 @@ const goToBookDetail = () => {
     </div>
     <div class="description-wrapper">
       <div class="title clickable" @click="goToBookDetail()">{{ props.title }}</div>
-      <el-popover placement="bottom" trigger="hover">
+      <el-popover placement="bottom" :trigger="popoverMode?'hover':''">
         <p>
           {{ props.popoverText }}
         </p>
