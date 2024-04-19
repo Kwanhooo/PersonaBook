@@ -51,6 +51,7 @@ function handleEditSave() {
   // TODO: 向后端更新图书信息
   console.log('确认变更', form)
   dialogFormVisible.value = false
+  //@ts-ignore
   let payload = {
     fileId: form.fileId,
     fileTitle: form.fileTitle,
@@ -131,11 +132,11 @@ function handleDeleteBook(row: any) {
 
 function multipleDeleteBook() {
   console.log('批量删除', multipleSelection.value)
-  const idList = []
+  const idList = [] as Array<Book>
   multipleSelection.value.forEach(item => {
+    //@ts-ignore
     idList.push(item.fileId)
   })
-  console.log(idList)
 }
 
 function handleChange(val: number) {

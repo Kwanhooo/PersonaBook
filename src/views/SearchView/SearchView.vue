@@ -7,6 +7,7 @@ const $route = useRoute()
 
 const keyword = $route.query.keyword
 
+//@ts-ignore
 const records = ref([
   {
     fileId: 1,

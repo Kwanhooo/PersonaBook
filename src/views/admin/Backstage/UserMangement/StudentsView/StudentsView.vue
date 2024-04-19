@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { type Ref, ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import userManagementUsers from '@/mock/user-management-students.json'
-import User from '@/router/routes/user'
+import { deleteUser, getUserList } from '@/requests/admin/userManagement'
+import type { GetUserListParam } from '@/interfaces/entity/GetUserListParam'
+import { ElMessage } from 'element-plus'
+import type { User } from '@/interfaces/entity/User'
 
 const searchKeyword = ref('')
 
-const records = ref(userManagementUsers) as Ref<Array<User>>
+const records = ref() as Ref<Array<User>>
 const pageSize = ref(10)
-const currentPage = ref()
+const currentPage = ref(1)
 const total = ref(records.value.length)
 
 function viewSurveyResult(row: any) {
@@ -25,6 +27,12 @@ function editRow(row: any) {
 
 function deleteRow(row: any) {
   console.log('删除行', row)
+  deleteUser(row.userId).then(res => {
+    if (res.data.code === 0) {
+      ElMessage.success('删除用户成功')
+      refreshData()
+    }
+  })
 }
 
 function handleChange(val: number) {
@@ -34,8 +42,41 @@ function handleChange(val: number) {
 }
 
 function refreshData() {
-
+  const getUserListParam = {
+    pageNum: currentPage.value,
+    pageSize: pageSize.value
+  } as GetUserListParam
+  getUserList(getUserListParam).then(res => {
+    console.log(res.data.data)
+    records.value = res.data.data.records
+  })
 }
+
+//@ts-ignore
+function formatGender(row, column, value) {
+  if (value === true)
+    return '男'
+  else if (value === false)
+    return '女'
+  else return ''
+}
+
+//@ts-ignore
+function formatGrade(row, column, value) {
+  const grades = {
+    1: '一年级',
+    2: '二年级',
+    3: '三年级',
+    4: '四年级',
+    5: '五年级',
+    6: '六年级'
+  }
+  //@ts-ignore
+  return grades[value] || ''
+}
+
+
+refreshData()
 </script>
 
 <template>
@@ -69,8 +110,10 @@ function refreshData() {
                          label="邮箱"></el-table-column>
         <el-table-column show-overflow-tooltip min-width="100" align="center" prop="birthday"
                          label="出生日期"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="gender" label="性别"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="grade" label="年级"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="sex" label="性别"
+                         :formatter="formatGender"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="grade" label="年级"
+                         :formatter="formatGrade"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="engagement" label="投入程度"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="comprehension" label="理解能力"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="readingAbility" label="阅读能力"></el-table-column>
@@ -86,7 +129,7 @@ function refreshData() {
         </el-table-column>
         <el-table-column min-width="100px" align="center" label="操作">
           <template #default="scope">
-            <el-button type="text" @click="editRow(scope.row)">编辑</el-button>
+            <!--            <el-button type="text" @click="editRow(scope.row)">编辑</el-button>-->
             <el-button type="text" @click="deleteRow(scope.row)" style="color: #BD3124">删除</el-button>
           </template>
         </el-table-column>
