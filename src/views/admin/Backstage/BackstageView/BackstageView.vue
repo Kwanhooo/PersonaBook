@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, watchEffect } from 'vue'
-import { ChatDotSquare, Collection, PictureFilled, StarFilled, Switch, Tickets, User } from '@element-plus/icons-vue'
+import { Collection, PictureFilled, StarFilled, Switch, Tickets, User } from '@element-plus/icons-vue'
 import $router from '@/router'
 import { useRoute } from 'vue-router'
 import type { RouteMetaProvider } from '@/interfaces/application/RouteMetaProvider'
@@ -123,55 +123,22 @@ const parentRouteTitle = computed(() => {
           </el-menu-item-group>
         </el-sub-menu>
 
-        <!-- 评分管理 -->
+        <!-- 互动管理 -->
         <el-sub-menu index="5">
           <template #title>
             <el-icon>
               <StarFilled />
             </el-icon>
-            <span>评分管理</span>
+            <span>互动管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/rating-management/rating-info">
-              评分信息
-            </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/rating-management/rating-details">
+            <el-menu-item class="menu-item-text-indent" index="/backstage/interact-management/rating-details">
               评分详情
             </el-menu-item>
-          </el-menu-item-group>
-        </el-sub-menu>
-
-        <!-- 评论管理 -->
-        <el-sub-menu index="6">
-          <template #title>
-            <el-icon>
-              <ChatDotSquare />
-            </el-icon>
-            <span>评论管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/comment-management/comment-info">
-              评论信息
-            </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/comment-management/comment-details">
+            <el-menu-item class="menu-item-text-indent" index="/backstage/interact-management/comment-details">
               评论详情
             </el-menu-item>
-          </el-menu-item-group>
-        </el-sub-menu>
-
-        <!-- 收藏管理 -->
-        <el-sub-menu index="7">
-          <template #title>
-            <el-icon>
-              <Collection />
-            </el-icon>
-            <span>收藏管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/collection-management/collection-info">
-              收藏信息
-            </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/collection-management/collection-details">
+            <el-menu-item class="menu-item-text-indent" index="/backstage/interact-management/collection-details">
               收藏详情
             </el-menu-item>
           </el-menu-item-group>

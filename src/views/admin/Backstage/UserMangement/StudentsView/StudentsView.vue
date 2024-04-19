@@ -2,16 +2,16 @@
 import { type Ref, ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
 import { deleteUser, getUserList } from '@/requests/admin/userManagement'
-import type { GetUserListParam } from '@/interfaces/entity/GetUserListParam'
 import { ElMessage } from 'element-plus'
 import type { User } from '@/interfaces/entity/User'
+import type { GetUserListParam } from '@/interfaces/GetUserListParam'
 
 const searchKeyword = ref('')
 
 const records = ref() as Ref<Array<User>>
 const pageSize = ref(10)
 const currentPage = ref(1)
-const total = ref(records.value.length)
+const total = ref(0)
 
 function viewSurveyResult(row: any) {
   console.log('查看问卷结果', row)
@@ -39,6 +39,7 @@ function handleChange(val: number) {
   console.log('当前页: ', val)
   console.log('每页条数: ', pageSize.value)
   currentPage.value = val
+  refreshData()
 }
 
 function refreshData() {

@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import ratingData from '@/mock/rating-management-rating-details.json'
+import { getScoreList } from '@/requests/admin/interactManagement'
 
 const bookName = ref('')
 const userName = ref('')
 const dateRange = ref([])
 
-const tableData = ref(ratingData)
+const tableData = ref()
 const pageSize = ref(10)
 const currentPage = ref(1)
-const total = ref(tableData.value.length)
+const total = ref(0)
 
 // 添加或修改函数以处理查询和重置操作
 function handleSearch() {
@@ -28,7 +28,21 @@ function handleReset() {
 function handleChange(val: number) {
   console.log('当前页: ', val)
   currentPage.value = val
+  refreshData()
 }
+
+function refreshData() {
+  const getRatingListParam = {
+    pageNum: currentPage.value,
+    pageSize: pageSize.value
+  }
+  getScoreList(getRatingListParam).then(res => {
+    tableData.value = res.data.data.records
+    total.value = res.data.data.total
+  })
+}
+
+refreshData()
 </script>
 
 <template>
@@ -70,11 +84,11 @@ function handleChange(val: number) {
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
         <el-table-column min-width="50" type="index" align="center" label="序号"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="bookName" label="图书名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="username" label="用户名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="rating" label="评分"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="ratingTime" label="评分时间"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileTitle" label="图书名"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileIsbn" label="ISBN"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="userId" label="用户名"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="score" label="评分"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="scoreTime" label="评分时间"></el-table-column>
       </el-table>
     </div>
     <div class="pagination-controller-wrapper">

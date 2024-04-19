@@ -3,12 +3,13 @@ import { reactive, ref, type Ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
 import type { Book } from '@/interfaces/entity/Book'
 import type { BookManagementGetBooksParam } from '@/interfaces/BookManagementGetBooksParam'
-import { deleteBook, getBooks, policy, updateFileInfo, upload } from '@/requests/admin/bookManagement'
+import { deleteBook, getBooks, getTagList, policy, updateFileInfo, upload } from '@/requests/admin/bookManagement'
 import cloneDeep from 'lodash.clonedeep'
 import { ElMessage } from 'element-plus'
 import type { UpdateFileInfoParam } from '@/interfaces/UpdateFileInfoParam'
-import { FILE_TAG } from '@/config/constant'
+import type { GetTagListParam } from '@/interfaces/GetTagListParam'
 
+const fileTag = ref()
 const searchKeyword = ref('')
 const bookInfoData = ref([]) as Ref<Book[]>
 const tableData = ref(bookInfoData)
@@ -173,8 +174,25 @@ function handleFileListChange(f: any) {
   console.log(file.value)
 }
 
+function refreshFileTag() {
+  const getTagListParam = {
+    pageNum: currentPage.value,
+    pageSize: pageSize.value
+  } as GetTagListParam
+  getTagList(getTagListParam).then(res => {
+    const records = res.data.data.records
+    fileTag.value = []
+    //@ts-ignore
+    records.forEach(i => {
+      fileTag.value.push(i.tagName)
+    })
+  })
+}
+
 // 初始化表格数据
 refreshBookInfoData()
+// 初始化类型数据
+refreshFileTag()
 </script>
 
 <template>
@@ -190,7 +208,7 @@ refreshBookInfoData()
         </el-form-item>
         <el-form-item label="图书类别" :label-width="formLabelWidth">
           <el-select v-model="form.fileTag" placeholder="请选择图书类别">
-            <el-option v-for="(item , index) in FILE_TAG" v-bind:key="index" :value="index+1" :label="item" />
+            <el-option v-for="(item , index) in fileTag" v-bind:key="index" :value="index+1" :label="item" />
           </el-select>
         </el-form-item>
         <el-form-item label="ISBN" :label-width="formLabelWidth">
@@ -271,9 +289,16 @@ refreshBookInfoData()
         <el-table-column show-overflow-tooltip align="center" prop="fileAuthor" label="作者"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="filePress" label="出版社"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="fileComingTime" label="出版年份"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="filePageSize" label="页数"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="filePageSize" label="页数"
+                         width="80"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="fileAbstract" label="摘要"></el-table-column>
-        <el-table-column align="center" min-width="80" label="操作">
+        <el-table-column show-overflow-tooltip align="center" prop="totalRating" width="80"
+                         label="总评分"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="totalComment" width="70"
+                         label="评论数"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="totalCollection"
+                         label="收藏数" width="70"></el-table-column>
+        <el-table-column align="center" min-width="70" label="操作">
           <template #default="scope">
             <el-button type="text" @click="editBook(scope.row)">编辑</el-button>
             <el-button type="text" @click="handleDeleteBook(scope.row)" style="color: #BD3124">删除</el-button>

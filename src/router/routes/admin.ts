@@ -171,61 +171,23 @@ const routes: Array<RouteRecordRaw> = [
         ]
       },
       {
-        path: 'rating-management',
-        name: 'rating-management',
+        path: 'interact-management',
+        name: 'interact-management',
         meta: {
-          title: '评分管理',
+          title: '互动管理',
           isAuthRequired: true,
           isShowFooter: false,
           isShowHeader: true,
           role: UserRole.ADMIN
         },
-        redirect: '/backstage/rating-management/rating-info',
+        redirect: '/backstage/interact-management/rating-details',
         children: [
-          {
-            path: 'rating-info',
-            name: 'rating-info',
-            component: () => import('@/views/admin/Backstage/RatingManagement/RatingInfoView/RatingInfoView.vue'),
-            meta: {
-              title: '评分信息',
-              isAuthRequired: true,
-              isShowFooter: false,
-              isShowHeader: true,
-              role: UserRole.ADMIN
-            }
-          },
           {
             path: 'rating-details',
             name: 'rating-details',
             component: () => import('@/views/admin/Backstage/RatingManagement/RatingDetailsView/RatingDetailsView.vue'),
             meta: {
               title: '评分详情',
-              isAuthRequired: true,
-              isShowFooter: false,
-              isShowHeader: true,
-              role: UserRole.ADMIN
-            }
-          }
-        ]
-      },
-      {
-        path: 'comment-management',
-        name: 'comment-management',
-        meta: {
-          title: '评论管理',
-          isAuthRequired: true,
-          isShowFooter: false,
-          isShowHeader: true,
-          role: UserRole.ADMIN
-        },
-        redirect: '/backstage/comment-management/comment-info',
-        children: [
-          {
-            path: 'comment-info',
-            name: 'comment-info',
-            component: () => import('@/views/admin/Backstage/CommentManagement/CommentInfoView/CommentInfoView.vue'),
-            meta: {
-              title: '评论信息',
               isAuthRequired: true,
               isShowFooter: false,
               isShowHeader: true,
@@ -238,32 +200,6 @@ const routes: Array<RouteRecordRaw> = [
             component: () => import('@/views/admin/Backstage/CommentManagement/CommentDetailsView/CommentDetailsView.vue'),
             meta: {
               title: '评论详情',
-              isAuthRequired: true,
-              isShowFooter: false,
-              isShowHeader: true,
-              role: UserRole.ADMIN
-            }
-          }
-        ]
-      },
-      {
-        path: 'collection-management',
-        name: 'collection-management',
-        meta: {
-          title: '收藏管理',
-          isAuthRequired: true,
-          isShowFooter: false,
-          isShowHeader: true,
-          role: UserRole.ADMIN
-        },
-        redirect: '/backstage/collection-management/collection-info',
-        children: [
-          {
-            path: 'collection-info',
-            name: 'collection-info',
-            component: () => import('@/views/admin/Backstage/CollectionManagement/CollectionInfoView/CollectionInfoView.vue'),
-            meta: {
-              title: '收藏信息',
               isAuthRequired: true,
               isShowFooter: false,
               isShowHeader: true,

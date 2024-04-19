@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
-import ratingData from '@/mock/comment-management-comment-details.json'
+import { getCommentList } from '@/requests/admin/interactManagement'
 
 const bookName = ref('')
 const userName = ref('')
 const dateRange = ref([])
 const sortOrder = ref('')
 
-const tableData = ref(ratingData)
+const tableData = ref()
 const pageSize = ref(10)
 const currentPage = ref(1)
-const total = ref(tableData.value.length)
+const total = ref(0)
 
 function handleSearch() {
   console.log('执行查询', {
@@ -34,7 +34,21 @@ function handleReset() {
 function handleChange(val: number) {
   console.log('当前页: ', val)
   currentPage.value = val
+  refreshData()
 }
+
+function refreshData() {
+  const getCommentListParam = {
+    pageNum: currentPage.value,
+    pageSize: pageSize.value
+  }
+  getCommentList(getCommentListParam).then(res => {
+    tableData.value = res.data.data.records
+    total.value = res.data.data.total
+  })
+}
+
+refreshData()
 </script>
 
 <template>
@@ -83,10 +97,10 @@ function handleChange(val: number) {
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
         <el-table-column min-width="50" type="index" align="center" label="序号"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="bookName" label="图书名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="username" label="用户名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="comment" label="评论内容"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileTitle" label="图书名"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="fileIsbn" label="ISBN"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="userId" label="用户名"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="commentContent" label="评论内容"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="commentTime" label="评论时间"></el-table-column>
       </el-table>
     </div>

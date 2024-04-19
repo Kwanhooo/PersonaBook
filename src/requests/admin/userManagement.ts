@@ -1,7 +1,7 @@
 import { backendBaseUrl } from '@/config/server'
 import axiosInstance from '@/config/axios'
 import { MimeType } from '@/interfaces/constant/mimeType'
-import type { GetUserListParam } from '@/interfaces/entity/GetUserListParam'
+import type { GetUserListParam } from '@/interfaces/GetUserListParam'
 
 const UserManagementAPI = {
   getUserList: `${backendBaseUrl}/admin/user/getUserList`,
