@@ -28,6 +28,19 @@ const routes: Array<RouteRecordRaw> = [
       isShowHeader: false,
       role: UserRole.GUEST
     } as RouteMetaProvider
+  },
+  {
+    path: '/search',
+    name: 'search',
+    // @ts-ignore
+    component: () => import('@/views/SearchView/SearchView.vue'),
+    meta: {
+      title: '搜索',
+      isAuthRequired: false,
+      isShowFooter: true,
+      isShowHeader: true,
+      role: UserRole.GUEST
+    } as RouteMetaProvider
   }
 ]
 

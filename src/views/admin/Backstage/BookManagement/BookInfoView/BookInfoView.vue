@@ -3,9 +3,11 @@ import { reactive, ref, type Ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
 import type { Book } from '@/interfaces/entity/Book'
 import type { BookManagementGetBooksParam } from '@/interfaces/BookManagementGetBooksParam'
-import { getBooks, policy, upload } from '@/requests/admin/bookManagement'
+import { deleteBook, getBooks, policy, updateFileInfo, upload } from '@/requests/admin/bookManagement'
 import cloneDeep from 'lodash.clonedeep'
 import { ElMessage } from 'element-plus'
+import type { UpdateFileInfoParam } from '@/interfaces/UpdateFileInfoParam'
+import { FILE_TAG } from '@/config/constant'
 
 const searchKeyword = ref('')
 const bookInfoData = ref([]) as Ref<Book[]>
@@ -49,6 +51,23 @@ function handleEditSave() {
   // TODO: 向后端更新图书信息
   console.log('确认变更', form)
   dialogFormVisible.value = false
+  let payload = {
+    fileId: form.fileId,
+    fileTitle: form.fileTitle,
+    fileAbstract: form.fileAbstract,
+    fileTagId: form.fileTag,
+    fileAuthor: form.fileAuthor,
+    fileIsbn: form.fileIsbn,
+    filePress: form.filePress,
+    fileComingTime: form.fileComingTime,
+    filePageSize: form.filePageSize
+  } as UpdateFileInfoParam
+  updateFileInfo(payload).then(res => {
+    console.log(res.data.data)
+    if (res.data.code === 0)
+      ElMessage.success('更新成功')
+    refreshBookInfoData()
+  })
 }
 
 function addBook() {
@@ -99,8 +118,24 @@ function handleAddBookSave() {
 }
 
 
-function deleteBook(row: any) {
+function handleDeleteBook(row: any) {
   console.log('删除图书', row)
+  deleteBook(row.fileId).then(res => {
+    console.log(res.data.data)
+    if (res.data.code === 0) {
+      refreshBookInfoData()
+      ElMessage.success('删除成功')
+    }
+  })
+}
+
+function multipleDeleteBook() {
+  console.log('批量删除', multipleSelection.value)
+  const idList = []
+  multipleSelection.value.forEach(item => {
+    idList.push(item.fileId)
+  })
+  console.log(idList)
 }
 
 function handleChange(val: number) {
@@ -154,8 +189,7 @@ refreshBookInfoData()
         </el-form-item>
         <el-form-item label="图书类别" :label-width="formLabelWidth">
           <el-select v-model="form.fileTag" placeholder="请选择图书类别">
-            <el-option label="科幻" value="1" />
-            <el-option label="文学" value="2" />
+            <el-option v-for="(item , index) in FILE_TAG" v-bind:key="index" :value="index+1" :label="item" />
           </el-select>
         </el-form-item>
         <el-form-item label="ISBN" :label-width="formLabelWidth">
@@ -221,9 +255,9 @@ refreshBookInfoData()
         </el-button>
       </div>
       <div class="right">
-        <el-button type="danger">删除</el-button>
+        <el-button type="danger" @click="multipleDeleteBook">删除</el-button>
         <el-button @click="addBook">新增图书</el-button>
-        <el-button>导入图书</el-button>
+        <!--        <el-button>导入图书</el-button>-->
       </div>
     </div>
     <div class="table-wrapper">
@@ -241,7 +275,7 @@ refreshBookInfoData()
         <el-table-column align="center" min-width="80" label="操作">
           <template #default="scope">
             <el-button type="text" @click="editBook(scope.row)">编辑</el-button>
-            <el-button type="text" @click="deleteBook(scope.row)" style="color: #BD3124">删除</el-button>
+            <el-button type="text" @click="handleDeleteBook(scope.row)" style="color: #BD3124">删除</el-button>
           </template>
         </el-table-column>
       </el-table>

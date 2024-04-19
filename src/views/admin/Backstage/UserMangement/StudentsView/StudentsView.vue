@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { type Ref, ref } from 'vue'
 import { CircleClose, Search } from '@element-plus/icons-vue'
 import userManagementUsers from '@/mock/user-management-students.json'
+import User from '@/router/routes/user'
 
 const searchKeyword = ref('')
 
-const tableData = ref(userManagementUsers)
+const records = ref(userManagementUsers) as Ref<Array<User>>
 const pageSize = ref(10)
 const currentPage = ref()
-const total = ref(tableData.value.length)
+const total = ref(records.value.length)
 
 function viewSurveyResult(row: any) {
   console.log('查看问卷结果', row)
@@ -30,6 +31,10 @@ function handleChange(val: number) {
   console.log('当前页: ', val)
   console.log('每页条数: ', pageSize.value)
   currentPage.value = val
+}
+
+function refreshData() {
+
 }
 </script>
 
@@ -57,7 +62,7 @@ function handleChange(val: number) {
       </div>
     </div>
     <div class="table-wrapper">
-      <el-table :data="tableData" style="width: 100%" height="100%">
+      <el-table :data="records" style="width: 100%" height="100%">
         <el-table-column align="center" type="selection"></el-table-column>
         <el-table-column show-overflow-tooltip align="center" prop="nickname" label="昵称"></el-table-column>
         <el-table-column show-overflow-tooltip min-width="200" align="center" prop="email"

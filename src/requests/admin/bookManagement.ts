@@ -2,10 +2,13 @@ import { backendBaseUrl } from '@/config/server'
 import axiosInstance from '@/config/axios'
 import type { BookManagementGetBooksParam } from '@/interfaces/BookManagementGetBooksParam'
 import { MimeType } from '@/interfaces/constant/mimeType'
+import type { UpdateFileInfoParam } from '@/interfaces/UpdateFileInfoParam'
 
 const BookManagementAPI = {
   getBooks: `${backendBaseUrl}/fileList/getFilesByCondition`,
-  policy: `${backendBaseUrl}/fileIO/policy`
+  policy: `${backendBaseUrl}/fileIO/policy`,
+  updateFileInfo: `${backendBaseUrl}/admin/file/update/`,
+  deleteBook: `${backendBaseUrl}/admin/file/changeStatus/`
 }
 
 
@@ -49,5 +52,28 @@ export function upload(payload: any) {
       'Content-Type': MimeType.formData
     },
     data: payload
+  })
+}
+
+
+export function updateFileInfo(payload: UpdateFileInfoParam) {
+  return axiosInstance({
+    url: BookManagementAPI.updateFileInfo + payload.fileId,
+    method: 'post',
+    headers: {
+      'Content-Type': MimeType.json
+    },
+    data: payload
+  })
+}
+
+export function deleteBook(fileId: number) {
+  return axiosInstance({
+    url: BookManagementAPI.deleteBook + fileId,
+    method: 'post',
+    headers: {
+      'Content-Type': MimeType.formData
+    },
+    data: { status: 3 }
   })
 }
