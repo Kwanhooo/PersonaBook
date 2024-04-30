@@ -60,12 +60,12 @@ const toggleCollapse = () => {
           </el-icon>
           <template #title>评论图书列表</template>
         </el-menu-item>
-        <el-menu-item index="/space/reading-profile">
-          <el-icon>
-            <Setting />
-          </el-icon>
-          <template #title>阅读画像</template>
-        </el-menu-item>
+<!--        <el-menu-item index="/space/reading-profile">-->
+<!--          <el-icon>-->
+<!--            <Setting />-->
+<!--          </el-icon>-->
+<!--          <template #title>阅读画像</template>-->
+<!--        </el-menu-item>-->
         <el-menu-item index="/space/reading-assessment">
           <el-icon>
             <EditPen />
