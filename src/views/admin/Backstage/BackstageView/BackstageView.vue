@@ -78,15 +78,15 @@ const parentRouteTitle = computed(() => {
             <span>画像管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/personal-portrait">
-              个人画像
-            </el-menu-item>
+            <!--            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/personal-portrait">-->
+            <!--              个人画像-->
+            <!--            </el-menu-item>-->
             <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/group-portrait">
-              群体画像
+              用户画像
             </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/knowledge-graph">
-              知识图谱
-            </el-menu-item>
+            <!--            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/knowledge-graph">-->
+            <!--              知识图谱-->
+            <!--            </el-menu-item>-->
           </el-menu-item-group>
         </el-sub-menu>
 

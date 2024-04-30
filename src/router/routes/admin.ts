@@ -83,7 +83,7 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'group-portrait',
             name: 'group-portrait',
-            component: () => import('@/views/PlaceholderView/PlaceholderView.vue'),
+            component: () => import('@/views/admin/Backstage/GroupPortraitView/GroupPortraitView.vue'),
             meta: {
               title: '群体画像',
               isAuthRequired: true,

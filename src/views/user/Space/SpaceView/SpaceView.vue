@@ -48,11 +48,11 @@ const toggleCollapse = () => {
           </el-icon>
           <template #title>信息修改</template>
         </el-menu-item>
-        <el-menu-item index="/space/rated-books">
+        <el-menu-item index="/space/favorite-books">
           <el-icon>
             <Odometer />
           </el-icon>
-          <template #title>评分图书列表</template>
+          <template #title>收藏图书列表</template>
         </el-menu-item>
         <el-menu-item index="/space/reviewed-books">
           <el-icon>

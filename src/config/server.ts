@@ -1,4 +1,4 @@
-export const backendBaseUrl = 'http://192.168.1.39:8080'
+export const backendBaseUrl = 'http://192.168.1.6:8080'
 // export const backendBaseUrl = 'http://120.79.77.193:8080'
 // export const backendBaseUrl = 'http://e68zed.natappfree.cc'
 

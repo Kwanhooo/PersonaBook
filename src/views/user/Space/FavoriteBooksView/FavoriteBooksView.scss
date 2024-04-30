@@ -1,0 +1,25 @@
+@import "@/assets/style/variables";
+
+.favorite-books-view-wrapper {
+  .books-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    & > div {
+      margin-bottom: 3rem;
+      margin-right: 2rem;
+    }
+
+    .placeholder {
+      width: $book-thumbnail-wanted-width;
+      margin-right: 2rem;
+    }
+  }
+
+  .pagination-controller-wrapper {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+  }
+}

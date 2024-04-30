@@ -1,9 +1,41 @@
-.search-view-wrapper {
-  //min-height: 1vh;
+@import "@/assets/style/variables";
 
-  .result-block {
-    background: gray;
-    //height: 100px;
-    margin: 1rem 0;
+.search-view-wrapper {
+  padding: 2rem 10rem 0 10rem;
+
+  .hot-wrapper {
+    margin: 1.5rem 0;
+  }
+
+  .title {
+    color: $theme-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 1rem;
+  }
+
+  .books-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    //min-height: 100vh;
+    //margin: 0 5rem;
+
+
+    & > div {
+      margin-bottom: 3rem;
+      margin-right: 2rem;
+    }
+
+    .placeholder {
+      width: $book-thumbnail-wanted-width;
+      margin-right: 2rem;
+    }
+  }
+
+  .pagination-controller-wrapper {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
   }
 }

@@ -44,19 +44,6 @@ const routes: Array<RouteRecordRaw> = [
         } as RouteMetaProvider
       },
       {
-        path: 'rated-books',
-        name: 'rated-books',
-        // @ts-ignore
-        component: () => import('@/views/user/Space/RatedBooksView/RatedBooksView.vue'),
-        meta: {
-          title: '评分图书列表',
-          isAuthRequired: true,
-          isShowFooter: false,
-          isShowHeader: true,
-          role: UserRole.USER
-        } as RouteMetaProvider
-      },
-      {
         path: 'reviewed-books',
         name: 'reviewed-books',
         // @ts-ignore

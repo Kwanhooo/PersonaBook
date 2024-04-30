@@ -2,18 +2,51 @@
 
 .reviewed-books-view-wrapper {
   .books-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 0 1rem;
 
-    & > div {
-      margin-bottom: 3rem;
-      margin-right: 2rem;
-    }
+    .review-item {
+      //background: yellow;
+      margin-bottom: 1rem;
+      display: flex;
+      border-bottom: 1px solid whitesmoke;
 
-    .placeholder {
-      width: $book-thumbnail-wanted-width;
-      margin-right: 2rem;
+      .avatar-wrapper {
+        display: flex;
+        align-items: center;
+
+        .avatar-img {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+        }
+      }
+
+      .comment-wrapper {
+        flex: 1;
+        padding: calc((150px - 80px) / 2);
+
+        .username {
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+
+        .comment {
+          margin: .5rem 0;
+          font-size: 1.1rem;
+        }
+
+        .time {
+          color: #444;
+          font-size: 0.9rem;
+        }
+
+      }
+
+      .book-cover {
+        height: 150px;
+        width: auto;
+        cursor: pointer;
+      }
     }
   }
 
