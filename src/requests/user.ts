@@ -6,7 +6,7 @@ import type { SearchParam } from '@/interfaces/SearchParam'
 const UserAPI = {
   getCollectionList: `${backendBaseUrl}/account/getCollections`,
   getComments: `${backendBaseUrl}/account/getComments`,
-  search: `${backendBaseUrl}/fileList/getFilesByKeyword2`
+  search: `${backendBaseUrl}/fileList/getFilesByKeyword`
 }
 
 export function getCollectionList(data: GetCollectionListParam) {
