@@ -105,6 +105,7 @@ initRecommendBooksData()
           <BookThumbnail v-for="b in newBooks"
                          v-bind:key="b.fileId"
                          v-bind:id="b.fileId"
+                         v-bind:no="b.fileNo"
                          v-bind:title="b.fileTitle"
                          v-bind:subtitle="b.fileAuthor"
                          v-bind:cover="b.previewPicture"
