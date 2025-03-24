@@ -22,8 +22,12 @@ const props = defineProps({
 
 const goToBookDetail = () => {
   // TODO: 图书详情跳转
-  console.log('go to book detail', props.no)
-  $router.push('/book-detail?bookNo=' + props.no)
+  if (localStorage.token && localStorage.token !== '') {
+    console.log('go to book detail', props.no)
+    $router.push('/book-detail?bookNo=' + props.no)
+  } else {
+    $router.push('/auth/')
+  }
 }
 </script>
 
@@ -34,12 +38,14 @@ const goToBookDetail = () => {
     </div>
     <div class="description-wrapper">
       <div class="title clickable" @click="goToBookDetail()">{{ props.title }}</div>
-      <el-popover placement="bottom" :trigger="popoverMode?'hover':''">
+      <el-popover placement="bottom" :trigger="popoverMode ? 'hover' : ''">
         <p>
           {{ props.popoverText }}
         </p>
         <template #reference>
-          <div :class="{'subtitle':true,'clickable':popoverMode,'popoverModeSubtitle':popoverMode}">
+          <div
+            :class="{ subtitle: true, clickable: popoverMode, popoverModeSubtitle: popoverMode }"
+          >
             {{ props.subtitle }}
           </div>
         </template>
@@ -49,5 +55,5 @@ const goToBookDetail = () => {
 </template>
 
 <style scoped lang="scss">
-@import "./BookThumbnail";
+@import './BookThumbnail';
 </style>
