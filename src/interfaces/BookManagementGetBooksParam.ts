@@ -1,5 +1,5 @@
 export interface BookManagementGetBooksParam {
-  pageNum: number;
-  pageSize: number;
-  orderBy: string;
+  pageNum: number
+  pageSize: number
+  orderBy: string
 }

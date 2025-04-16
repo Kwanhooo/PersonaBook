@@ -19,5 +19,3 @@ export class UserValid {
   // 非法 0
   public static readonly INVALID = 0
 }
-
-

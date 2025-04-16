@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import InfoPlaceholder from '@/components/InfoPlaceholder/InfoPlaceholder.vue'
 </script>
 
@@ -8,5 +7,5 @@ import InfoPlaceholder from '@/components/InfoPlaceholder/InfoPlaceholder.vue'
 </template>
 
 <style scoped lang="scss">
-@import "./ReadingProfileView";
+@import './ReadingProfileView';
 </style>

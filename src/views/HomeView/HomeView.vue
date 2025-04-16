@@ -48,7 +48,6 @@ const initRecommendBooksData = () => {
 initNewBooksData()
 // 初始化为您推荐数据
 initRecommendBooksData()
-
 </script>
 
 <template>
@@ -75,23 +74,25 @@ initRecommendBooksData()
         <el-link
           v-for="k in hotSearch"
           v-bind:key="k"
-          style="margin-right: 1rem;"
-          @click="handleSearch(k)">
+          style="margin-right: 1rem"
+          @click="handleSearch(k)"
+        >
           {{ k }}
         </el-link>
       </div>
-      <hr class="divider">
+      <hr class="divider" />
       <Carousel />
       <div v-if="isUserLoggedIn()" class="recommend-wrapper">
         <div class="title">为您推荐</div>
-        <div class="books-wrapper" v-if="recommendBooks.length!==0">
-          <BookThumbnail v-for="b in recommendBooks"
-                         v-bind:key="b.fileId"
-                         v-bind:id="b.fileId"
-                         v-bind:no="b.fileNo"
-                         v-bind:title="b.fileTitle"
-                         v-bind:subtitle="b.fileAuthor"
-                         v-bind:cover="b.previewPicture"
+        <div class="books-wrapper" v-if="recommendBooks.length !== 0">
+          <BookThumbnail
+            v-for="b in recommendBooks"
+            v-bind:key="b.fileId"
+            v-bind:id="b.fileId"
+            v-bind:no="b.fileNo"
+            v-bind:title="b.fileTitle"
+            v-bind:subtitle="b.fileAuthor"
+            v-bind:cover="b.previewPicture"
           />
           <i class="placeholder" v-for="p in 20" v-bind:key="p" />
         </div>
@@ -101,14 +102,15 @@ initRecommendBooksData()
       </div>
       <div class="recommend-wrapper">
         <div class="title">新书速递</div>
-        <div class="books-wrapper" v-if="newBooks.length!==0">
-          <BookThumbnail v-for="b in newBooks"
-                         v-bind:key="b.fileId"
-                         v-bind:id="b.fileId"
-                         v-bind:no="b.fileNo"
-                         v-bind:title="b.fileTitle"
-                         v-bind:subtitle="b.fileAuthor"
-                         v-bind:cover="b.previewPicture"
+        <div class="books-wrapper" v-if="newBooks.length !== 0">
+          <BookThumbnail
+            v-for="b in newBooks"
+            v-bind:key="b.fileId"
+            v-bind:id="b.fileId"
+            v-bind:no="b.fileNo"
+            v-bind:title="b.fileTitle"
+            v-bind:subtitle="b.fileAuthor"
+            v-bind:cover="b.previewPicture"
           />
           <i class="placeholder" v-for="p in 10" v-bind:key="p" />
         </div>
@@ -116,12 +118,9 @@ initRecommendBooksData()
           <el-skeleton :rows="10" animated />
         </div>
       </div>
-      <div>
-
-      </div>
+      <div></div>
     </div>
   </div>
-
 </template>
 
 <style scoped lang="scss">

@@ -1,5 +1,5 @@
 export interface AdminUserQueryParam {
-  username: string;
-  pageNum: number;
-  pageSize: number;
+  username: string
+  pageNum: number
+  pageSize: number
 }

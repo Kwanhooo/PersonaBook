@@ -30,7 +30,6 @@ const goToProfile = () => {
 const goToBackstage = () => {
   $router.push('/backstage')
 }
-
 </script>
 
 <template>
@@ -44,7 +43,9 @@ const goToBackstage = () => {
     </div>
     <div class="auth-controller ar-center">
       <el-button v-if="!isUserLoggedIn()" type="primary" size="large">免费注册</el-button>
-      <el-button v-if="!isUserLoggedIn()" size="large" @click="$router.push('/auth')">立即登录</el-button>
+      <el-button v-if="!isUserLoggedIn()" size="large" @click="$router.push('/auth')"
+        >立即登录</el-button
+      >
       <div v-else>
         <el-popover placement="bottom" trigger="hover">
           <p v-if="userRole === UserRole.ADMIN">
@@ -72,7 +73,7 @@ const goToBackstage = () => {
             </el-button>
           </p>
           <template #reference>
-            <span style="cursor: pointer;">
+            <span style="cursor: pointer">
               <span class="theme-text" style="font-weight: bold">
                 {{ userNickname }}
               </span>
@@ -87,5 +88,5 @@ const goToBackstage = () => {
 </template>
 
 <style scoped lang="scss">
-@import "./BaseHeader";
+@import './BaseHeader';
 </style>

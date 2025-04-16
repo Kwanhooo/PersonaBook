@@ -45,7 +45,6 @@ ElMessage.warning({
   duration: 10000,
   message: '[Dev-Mode] 按住CTRL键，并点击忘记密码，以“管理员”身份登录'
 })
-
 </script>
 
 <template>
@@ -65,7 +64,7 @@ ElMessage.warning({
           size="large"
           placeholder="用户名"
           prefix-icon="User"
-          style="margin-bottom: 1rem;"
+          style="margin-bottom: 1rem"
         />
         <el-input
           type="password"
@@ -73,12 +72,19 @@ ElMessage.warning({
           size="large"
           placeholder="密码"
           prefix-icon="Lock"
-          style="margin-bottom: 2rem;"
+          style="margin-bottom: 2rem"
         />
       </div>
       <div class="button-group-wrapper">
-        <el-button type="primary" size="large" style="width: 45%;" @click="handleLogin()">登录</el-button>
-        <el-button :disabled="activeName === 'admin'" size="large" style="width: 45%;" @click="handleRegister()">注册
+        <el-button type="primary" size="large" style="width: 45%" @click="handleLogin()"
+          >登录</el-button
+        >
+        <el-button
+          :disabled="activeName === 'admin'"
+          size="large"
+          style="width: 45%"
+          @click="handleRegister()"
+          >注册
         </el-button>
       </div>
       <div class="forget-wrapper">
@@ -87,13 +93,11 @@ ElMessage.warning({
     </div>
     <div class="footer-wrapper center">
       <div>Copyright© 2024 中南大学开源实验室</div>
-      <div style="margin-top: .5rem">粤ICP备2022013690号-2</div>
+      <div style="margin-top: 0.5rem">粤ICP备2022013690号-2</div>
     </div>
   </div>
 </template>
 
-
 <style scoped lang="scss">
-@import "AuthView";
-
+@import 'AuthView';
 </style>

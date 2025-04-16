@@ -86,7 +86,8 @@ const routes: Array<RouteRecordRaw> = [
         path: 'reading-assessment',
         name: 'reading-assessment',
         // @ts-ignore
-        component: () => import('@/views/user/Space/ReadingAssessmentView/ReadingAssessmentView.vue'),
+        component: () =>
+          import('@/views/user/Space/ReadingAssessmentView/ReadingAssessmentView.vue'),
         meta: {
           title: '阅读能力测评',
           isAuthRequired: true,

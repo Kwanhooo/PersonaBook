@@ -24,7 +24,11 @@ function handleChange(val: number) {
   <div class="collection-info-view-wrapper">
     <div class="control-group-wrapper">
       <div class="left">
-        <el-input v-model="searchKeyword" placeholder="请输入图书信息" style="width:20rem;margin-right: 1rem" />
+        <el-input
+          v-model="searchKeyword"
+          placeholder="请输入图书信息"
+          style="width: 20rem; margin-right: 1rem"
+        />
         <el-button type="primary">
           <el-icon>
             <Search />
@@ -42,9 +46,24 @@ function handleChange(val: number) {
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
         <el-table-column min-width="50" align="center" type="index" label="序号"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="title" label="图书名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="isbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="collection" label="总收藏数"></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="title"
+          label="图书名"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="isbn"
+          label="ISBN"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="collection"
+          label="总收藏数"
+        ></el-table-column>
         <el-table-column align="center" min-width="50" label="操作">
           <template #default="scope">
             <el-button type="text" @click="viewDetails(scope.row)">详情</el-button>
@@ -66,5 +85,5 @@ function handleChange(val: number) {
 </template>
 
 <style scoped lang="scss">
-@import "CollectionInfoView";
+@import 'CollectionInfoView';
 </style>

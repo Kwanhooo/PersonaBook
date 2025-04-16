@@ -30,7 +30,6 @@ const handleSearch = (k: string) => {
   // TODO: 搜索结果展示
   $router.push('/search?keyword=' + k)
   refreshData()
-  // window.
 }
 
 const records = ref()
@@ -41,9 +40,9 @@ const refreshData = () => {
     pageSize: pageSize.value,
     keyword: keyword.value
   } as SearchParam
-  search(searchParam).then(res => {
-    records.value = res.data.data.records
-    total.value = res.data.data.total
+  search(searchParam).then((res) => {
+    records.value = res.data.data
+    total.value = res.data.data.length
   })
 }
 
@@ -72,23 +71,24 @@ refreshData()
       <el-link
         v-for="k in hotSearch"
         v-bind:key="k"
-        style="margin-right: 1rem;"
-        @click="handleSearch(k)">
+        style="margin-right: 1rem"
+        @click="handleSearch(k)"
+      >
         {{ k }}
       </el-link>
     </div>
-    <hr class="divider">
-
+    <hr class="divider" />
 
     <div class="title" style="margin: 1.5rem 0">搜索结果</div>
     <div class="books-wrapper">
-      <BookThumbnail v-for="b in records"
-                     v-bind:key="b.id"
-                     v-bind:id="b.fileNo"
-                     v-bind:no="b.fileNo"
-                     v-bind:subtitle="b.fileAuthor"
-                     v-bind:title="b.fileTitle"
-                     v-bind:cover="b.previewPicture"
+      <BookThumbnail
+        v-for="b in records"
+        v-bind:key="b.id"
+        v-bind:id="b.fileNo"
+        v-bind:no="b.fileNo"
+        v-bind:subtitle="b.fileAuthor"
+        v-bind:title="b.fileTitle"
+        v-bind:cover="b.previewPicture"
       />
       <i class="placeholder" v-for="p in 20" v-bind:key="p" />
     </div>
@@ -106,5 +106,5 @@ refreshData()
 </template>
 
 <style scoped lang="scss">
-@import "SearchView";
+@import 'SearchView';
 </style>

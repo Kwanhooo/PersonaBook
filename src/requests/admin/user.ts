@@ -47,4 +47,3 @@ export function disable(data: AdminUserDisableParam) {
     data: data
   })
 }
-

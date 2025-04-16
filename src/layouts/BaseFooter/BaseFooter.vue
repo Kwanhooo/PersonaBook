@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="footer-wrapper">
@@ -7,17 +6,19 @@
       <div class="title">中南大学开源实验室</div>
       <div class="content">地址：湖南省长沙市中南大学北校区</div>
       <div class="content">电话：(0731) 88888888</div>
-      <div class="content">邮箱：<a href="mailto://persona-book@csuoss.cn">persona-book@csuoss.cn</a></div>
+      <div class="content">
+        邮箱：<a href="mailto://persona-book@csuoss.cn">persona-book@csuoss.cn</a>
+      </div>
       <!-- TODO: 社交媒体嵌入 -->
       <div class="social-media">
         <div class="item">
-          <img src="../../assets/svg/logo-weibo.svg" alt="weibo">
+          <img src="../../assets/svg/logo-weibo.svg" alt="weibo" />
         </div>
         <div class="item">
-          <img src="../../assets/svg/logo-wechat.svg" alt="wechat">
+          <img src="../../assets/svg/logo-wechat.svg" alt="wechat" />
         </div>
         <div class="item">
-          <img src="../../assets/svg/logo-twitter.svg" alt="twitter">
+          <img src="../../assets/svg/logo-twitter.svg" alt="twitter" />
         </div>
       </div>
     </div>
@@ -51,5 +52,5 @@
 </template>
 
 <style scoped lang="scss">
-@import "./BaseFooter";
+@import './BaseFooter';
 </style>

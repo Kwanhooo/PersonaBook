@@ -1,6 +1,4 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div class="wrapper">
@@ -14,5 +12,5 @@
 </template>
 
 <style scoped lang="scss">
-@import "NotFoundView";
+@import 'NotFoundView';
 </style>

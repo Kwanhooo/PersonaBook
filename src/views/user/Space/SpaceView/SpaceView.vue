@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, watchEffect } from 'vue'
-import { ChatLineRound, EditPen, Odometer, Setting, Switch, User } from '@element-plus/icons-vue'
+import { ChatLineRound, EditPen, Odometer, Switch, User } from '@element-plus/icons-vue'
 import $router from '@/router'
 import { useRoute } from 'vue-router'
 import type { RouteMetaProvider } from '@/interfaces/application/RouteMetaProvider'
@@ -23,7 +23,6 @@ watchEffect(() => {
 const toggleCollapse = () => {
   isCollapse.value = !isCollapse.value
 }
-
 </script>
 
 <template>
@@ -60,12 +59,12 @@ const toggleCollapse = () => {
           </el-icon>
           <template #title>评论图书列表</template>
         </el-menu-item>
-<!--        <el-menu-item index="/space/reading-profile">-->
-<!--          <el-icon>-->
-<!--            <Setting />-->
-<!--          </el-icon>-->
-<!--          <template #title>阅读画像</template>-->
-<!--        </el-menu-item>-->
+        <!--        <el-menu-item index="/space/reading-profile">-->
+        <!--          <el-icon>-->
+        <!--            <Setting />-->
+        <!--          </el-icon>-->
+        <!--          <template #title>阅读画像</template>-->
+        <!--        </el-menu-item>-->
         <el-menu-item index="/space/reading-assessment">
           <el-icon>
             <EditPen />
@@ -79,9 +78,7 @@ const toggleCollapse = () => {
         <el-page-header @back="$router.back()">
           <template #breadcrumb>
             <el-breadcrumb separator="/">
-              <el-breadcrumb-item to="/space">
-                个人中心
-              </el-breadcrumb-item>
+              <el-breadcrumb-item to="/space"> 个人中心 </el-breadcrumb-item>
               <el-breadcrumb-item>
                 {{ routeMeta.title }}
               </el-breadcrumb-item>
@@ -113,5 +110,5 @@ const toggleCollapse = () => {
 </template>
 
 <style scoped lang="scss">
-@import "./SpaceView";
+@import './SpaceView';
 </style>

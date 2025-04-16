@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import { computed, ref, watchEffect } from 'vue'
-import { Collection, PictureFilled, StarFilled, Switch, Tickets, User } from '@element-plus/icons-vue'
+import {
+  Collection,
+  PictureFilled,
+  StarFilled,
+  Switch,
+  Tickets,
+  User
+} from '@element-plus/icons-vue'
 import $router from '@/router'
 import { useRoute } from 'vue-router'
 import type { RouteMetaProvider } from '@/interfaces/application/RouteMetaProvider'
@@ -31,7 +38,6 @@ const parentRoutePath = computed(() => {
 const parentRouteTitle = computed(() => {
   return getRouteInfoByPath(parentRoutePath.value)?.meta?.title ?? '未知'
 })
-
 </script>
 
 <template>
@@ -60,10 +66,16 @@ const parentRouteTitle = computed(() => {
             <span>图书管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/book-management/book-info">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/book-management/book-info"
+            >
               图书信息
             </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/book-management/book-category">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/book-management/book-category"
+            >
               图书分类
             </el-menu-item>
           </el-menu-item-group>
@@ -81,7 +93,10 @@ const parentRouteTitle = computed(() => {
             <!--            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/personal-portrait">-->
             <!--              个人画像-->
             <!--            </el-menu-item>-->
-            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/group-portrait">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/portrait-management/group-portrait"
+            >
               用户画像
             </el-menu-item>
             <!--            <el-menu-item class="menu-item-text-indent" index="/backstage/portrait-management/knowledge-graph">-->
@@ -114,10 +129,16 @@ const parentRouteTitle = computed(() => {
             <span>问卷管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/survey-management/survey-info">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/survey-management/survey-info"
+            >
               问卷信息
             </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/survey-management/survey-results">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/survey-management/survey-results"
+            >
               问卷结果
             </el-menu-item>
           </el-menu-item-group>
@@ -132,13 +153,22 @@ const parentRouteTitle = computed(() => {
             <span>互动管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/interact-management/rating-details">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/interact-management/rating-details"
+            >
               评分详情
             </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/interact-management/comment-details">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/interact-management/comment-details"
+            >
               评论详情
             </el-menu-item>
-            <el-menu-item class="menu-item-text-indent" index="/backstage/interact-management/collection-details">
+            <el-menu-item
+              class="menu-item-text-indent"
+              index="/backstage/interact-management/collection-details"
+            >
               收藏详情
             </el-menu-item>
           </el-menu-item-group>
@@ -151,9 +181,7 @@ const parentRouteTitle = computed(() => {
         <el-page-header @back="$router.back()">
           <template #breadcrumb>
             <el-breadcrumb separator="/">
-              <el-breadcrumb-item to="/backstage">
-                管理员后台
-              </el-breadcrumb-item>
+              <el-breadcrumb-item to="/backstage"> 管理员后台 </el-breadcrumb-item>
               <el-breadcrumb-item :to="parentRoutePath">
                 {{ parentRouteTitle }}
               </el-breadcrumb-item>
@@ -188,5 +216,5 @@ const parentRouteTitle = computed(() => {
 </template>
 
 <style scoped lang="scss">
-@import "./BackstageView";
+@import './BackstageView';
 </style>

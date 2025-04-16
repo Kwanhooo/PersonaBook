@@ -17,29 +17,29 @@ export default defineConfig({
         enabled: false
       },
       manifest: {
-        'short_name': 'PersonaBook',
-        'name': '智慧图书馆',
-        'icons': [
+        short_name: 'PersonaBook',
+        name: '智慧图书馆',
+        icons: [
           {
-            'src': '/favicon.ico',
-            'sizes': '256x256',
-            'type': 'image/x-icon'
+            src: '/favicon.ico',
+            sizes: '256x256',
+            type: 'image/x-icon'
           },
           {
-            'src': '/logo.png',
-            'sizes': '1024x1024',
-            'type': 'image/png'
+            src: '/logo.png',
+            sizes: '1024x1024',
+            type: 'image/png'
           },
           {
-            'src': '/maskable-icon-x512.png',
-            'sizes': '512x512',
-            'type': 'image/png',
-            'purpose': 'maskable'
+            src: '/maskable-icon-x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ],
-        'background_color': '#FFFFFF',
-        'display': 'standalone',
-        'theme_color': '#2779D6'
+        background_color: '#FFFFFF',
+        display: 'standalone',
+        theme_color: '#2779D6'
       }
     }),
     AutoImport({

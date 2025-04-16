@@ -1,11 +1,11 @@
 export interface RouteMetaProvider extends Record<string | number | symbol, unknown> {
-  title: string;
-  isAuthRequired: boolean;
-  isShowHeader: boolean;
-  isShowFooter: boolean;
+  title: string
+  isAuthRequired: boolean
+  isShowHeader: boolean
+  isShowFooter: boolean
 
-  headerTitle?: string;
-  headerLogo?: string;
+  headerTitle?: string
+  headerLogo?: string
 
-  [key: string]: any;
+  [key: string]: any
 }

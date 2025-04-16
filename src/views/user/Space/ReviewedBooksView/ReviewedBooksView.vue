@@ -4,7 +4,6 @@ import $router from '@/router'
 import { getComments } from '@/requests/user'
 import type { GetCommentListParam } from '@/interfaces/GetCommentListParam'
 
-
 // 分页组件变量
 const currentPage = ref(1)
 const pageSize = ref(20)
@@ -27,7 +26,7 @@ const refreshData = () => {
     pageNum: currentPage.value,
     pageSize: pageSize.value
   } as GetCommentListParam
-  getComments(getCommentsParam).then(res => {
+  getComments(getCommentsParam).then((res) => {
     total.value = res.data.data.total
     records.value = res.data.data.records
   })
@@ -41,14 +40,14 @@ refreshData()
     <div class="books-wrapper">
       <div class="review-item" v-for="i in records" v-bind:key="i.id">
         <div class="avatar-wrapper">
-          <img class="avatar-img" src="https://asset.0xcafebabe.cn/test.png">
+          <img class="avatar-img" src="https://asset.0xcafebabe.cn/test.png" />
         </div>
         <div class="comment-wrapper">
           <div class="username">{{ i.name }}</div>
           <div class="comment">{{ i.commentContent }}</div>
           <div class="time">{{ i.commentTime }}</div>
         </div>
-        <img @click="goToDetail(i.fileNo)" class="book-cover" :src="i.previewPicture">
+        <img @click="goToDetail(i.fileNo)" class="book-cover" :src="i.previewPicture" />
       </div>
     </div>
     <div class="pagination-controller-wrapper">
@@ -65,5 +64,5 @@ refreshData()
 </template>
 
 <style scoped lang="scss">
-@import "./ReviewedBooksView";
+@import './ReviewedBooksView';
 </style>

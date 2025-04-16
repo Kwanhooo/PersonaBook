@@ -13,7 +13,14 @@ const FileListAPI = {
  */
 export function getHomeViewNewBooks(data: HomeViewNewBooksParam) {
   return axiosInstance({
-    url: FileListAPI.getFilesByCondition + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + 'time',
+    url:
+      FileListAPI.getFilesByCondition +
+      '?pageNum=' +
+      data.pageNum +
+      '&pageSize=' +
+      data.pageSize +
+      '&orderBy=' +
+      'time',
     method: 'get'
   })
 }
@@ -25,8 +32,14 @@ export function getHomeViewNewBooks(data: HomeViewNewBooksParam) {
 // TODO: 把orderBy改成recommend
 export function getHomeViewRecommendBooks(data: HomeViewRecommendBooksParam) {
   return axiosInstance({
-    url: FileListAPI.getFilesByCondition + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + 'time',
+    url:
+      FileListAPI.getFilesByCondition +
+      '?pageNum=' +
+      data.pageNum +
+      '&pageSize=' +
+      data.pageSize +
+      '&orderBy=' +
+      'time',
     method: 'get'
   })
 }
-

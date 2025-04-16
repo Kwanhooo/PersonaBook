@@ -1,3 +1,3 @@
 export interface AdminUserDisableParam {
-  username: string;
+  username: string
 }

@@ -2,7 +2,13 @@
 import { type Ref, ref } from 'vue'
 import type { Book } from '@/interfaces/entity/Book'
 import { useRoute } from 'vue-router'
-import { collectFile, commentFile, getBookDetail, getFileComments, scoreFile } from '@/requests/fileFunction'
+import {
+  collectFile,
+  commentFile,
+  getBookDetail,
+  getFileComments,
+  scoreFile
+} from '@/requests/fileFunction'
 import $router from '@/router'
 import { readerBackendUrl } from '@/config/server'
 import { ChatDotRound, ChatLineRound, ChatRound } from '@element-plus/icons-vue'
@@ -43,7 +49,7 @@ const initComments = () => {
     orderBy: 'time'
   } as GetFileCommentsParam
 
-  getFileComments(getCommentParam).then(res => {
+  getFileComments(getCommentParam).then((res) => {
     console.log(res.data.data)
     commentRecords.value = res.data.data.records
     commentAmount.value = res.data.data.total
@@ -51,22 +57,18 @@ const initComments = () => {
 }
 
 const initData = () => {
-  getBookDetail(typeof bookNo === 'string' ? bookNo : '').then(res => {
+  getBookDetail(typeof bookNo === 'string' ? bookNo : '').then((res) => {
     console.log(res.data.data)
     bookEntity.value = res.data.data
 
-    if (bookEntity.value.userScore == null)
-      myRate.value = 0
-    else
-      myRate.value = bookEntity.value.userScore
+    if (bookEntity.value.userScore == null) myRate.value = 0
+    else myRate.value = bookEntity.value.userScore
 
     readerRate.value = bookEntity.value.fileHiddenScore
   })
 
-
   initComments()
 }
-
 
 // 初始化图书详情数据
 initData()
@@ -74,7 +76,10 @@ initData()
 const goToReader = () => {
   // $router.push('reader?object=' + encodeURI(bookEntity.value.previewRealObject))
   console.log(bookEntity.value.previewRealObject)
-  window.open(`${readerBackendUrl}?bookPath=${encodeURIComponent(bookEntity.value.previewRealObject)}`, '_blank')
+  window.open(
+    `${readerBackendUrl}?bookPath=${encodeURIComponent(bookEntity.value.previewRealObject)}`,
+    '_blank'
+  )
 }
 
 const icons = [ChatRound, ChatLineRound, ChatDotRound]
@@ -84,9 +89,8 @@ const handleSubmitRate = () => {
     fileNo: bookNo,
     score: myRate.value
   } as ScoreFileParam
-  scoreFile(data).then(res => {
-    if (res.data.code === 1)
-      ElMessage.error(res.data.message)
+  scoreFile(data).then((res) => {
+    if (res.data.code === 1) ElMessage.error(res.data.message)
     else {
       ElMessage.success(res.data.data)
       bookEntity.value.userScore = myRate.value
@@ -98,9 +102,8 @@ const handleSubmitCollect = () => {
   const data = {
     fileNo: bookNo
   } as CollectFileParam
-  collectFile(data).then(res => {
-    if (res.data.code === 1)
-      ElMessage.error(res.data.message)
+  collectFile(data).then((res) => {
+    if (res.data.code === 1) ElMessage.error(res.data.message)
     else {
       if (res.data.data === '收藏成功') {
         ElMessage.success(res.data.data)
@@ -124,7 +127,7 @@ const handleCommentSend = () => {
     fileNo: bookNo,
     content: myComment.value
   } as CommentFileParam
-  commentFile(commentFileParam).then(res => {
+  commentFile(commentFileParam).then((res) => {
     console.log(res.data.data)
     initComments()
   })
@@ -136,7 +139,8 @@ const handleCommentSend = () => {
     <div class="top-bar-wrapper">
       <el-button
         color="#2779D6"
-        plain style="width: 5rem;height: 2.5rem"
+        plain
+        style="width: 5rem; height: 2.5rem"
         icon="ArrowLeft"
         @click="$router.back()"
       >
@@ -152,24 +156,37 @@ const handleCommentSend = () => {
           <div class="book-name">{{ bookEntity.fileTitle }}</div>
           <div class="favorite-info">
             <div class="group">
-              <img v-if="!bookEntity.userCollectStatus" class="icon" src="@/assets/svg/icon-star-empty.svg"
-                   style="cursor: pointer;"
-                   @click="handleSubmitCollect()">
-              <img v-else class="icon" src="@/assets/svg/icon-star.svg" style="cursor: pointer;"
-                   @click="handleSubmitCollect()">
+              <img
+                v-if="!bookEntity.userCollectStatus"
+                class="icon"
+                src="@/assets/svg/icon-star-empty.svg"
+                style="cursor: pointer"
+                @click="handleSubmitCollect()"
+              />
+              <img
+                v-else
+                class="icon"
+                src="@/assets/svg/icon-star.svg"
+                style="cursor: pointer"
+                @click="handleSubmitCollect()"
+              />
               <div class="amount">{{ bookEntity.fileCollectTimes }}</div>
             </div>
             <div class="group">
-              <img class="icon" src="@/assets/svg/icon-read.svg">
+              <img class="icon" src="@/assets/svg/icon-read.svg" />
               <div class="amount">{{ bookEntity.fileReadTimes }}</div>
             </div>
           </div>
         </div>
         <div class="author">作者：{{ bookEntity.fileAuthor }}</div>
-        <el-button color="#2779D6" style="width: 8rem;height: 2.5rem;margin-top: 2rem" @click.prevent="goToReader()">
+        <el-button
+          color="#2779D6"
+          style="width: 8rem; height: 2.5rem; margin-top: 2rem"
+          @click.prevent="goToReader()"
+        >
           阅读本书
         </el-button>
-        <div style="margin-top: 2rem;font-size: 1rem;margin-right: 10rem;color: #333333">
+        <div style="margin-top: 2rem; font-size: 1rem; margin-right: 10rem; color: #333333">
           {{ bookEntity.fileAbstract }}
         </div>
       </div>
@@ -194,11 +211,13 @@ const handleCommentSend = () => {
             :void-icon="ChatRound"
             text-color="#ff9900"
             score-template="{value}"
-            :disabled="bookEntity.userScore!=null"
-            :colors="['#FF9900','#409eff', '#67c23a' ]"
+            :disabled="bookEntity.userScore != null"
+            :colors="['#FF9900', '#409eff', '#67c23a']"
           />
           <div style="margin-top: 1rem">
-            <el-button @click="handleSubmitRate()" v-if="bookEntity.userScore==null">提交评分</el-button>
+            <el-button @click="handleSubmitRate()" v-if="bookEntity.userScore == null"
+              >提交评分</el-button
+            >
           </div>
         </div>
       </div>
@@ -217,26 +236,26 @@ const handleCommentSend = () => {
         <div class="value">{{ bookEntity.fileTag }}</div>
       </div>
     </div>
-    <div class="recommend-wrapper">
-
-    </div>
+    <div class="recommend-wrapper"></div>
     <div class="comment-wrapper">
-      <div class="title">
-        图书评论（{{ commentAmount }}）
-      </div>
+      <div class="title">图书评论（{{ commentAmount }}）</div>
       <div class="container">
-        <CommentItem v-for="c in commentRecords" v-bind:key="c.id"
-                     avatar="https://asset.0xcafebabe.cn/avatar.jpg"
-                     :username="c.name"
-                     :comment="c.commentContent"
-                     :time="c.commentTime"
+        <CommentItem
+          v-for="c in commentRecords"
+          v-bind:key="c.id"
+          avatar="https://asset.0xcafebabe.cn/avatar.jpg"
+          :username="c.name"
+          :comment="c.commentContent"
+          :time="c.commentTime"
         />
       </div>
       <div class="pagination-wrapper">
-        <el-pagination background layout="prev, pager, next"
-                       :total="commentAmount"
-                       :page-size="commentPageSize"
-                       @change="handleCommentCurrentChange"
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          :total="commentAmount"
+          :page-size="commentPageSize"
+          @change="handleCommentCurrentChange"
         />
       </div>
     </div>
@@ -250,13 +269,11 @@ const handleCommentSend = () => {
         type="textarea"
         style="font-size: 1rem"
       />
-      <button class="send-button" @click="handleCommentSend()">
-        发送
-      </button>
+      <button class="send-button" @click="handleCommentSend()">发送</button>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import "BookDetailView";
+@import 'BookDetailView';
 </style>

@@ -16,14 +16,20 @@ const BookManagementAPI = {
   addTag: `${backendBaseUrl}/admin/file/addTag`
 }
 
-
 /**
  * 获取所有图书
  * @param data
  */
 export function getBooks(data: BookManagementGetBooksParam) {
   return axiosInstance({
-    url: BookManagementAPI.getBooks + '?pageNum=' + data.pageNum + '&pageSize=' + data.pageSize + '&orderBy=' + data.orderBy,
+    url:
+      BookManagementAPI.getBooks +
+      '?pageNum=' +
+      data.pageNum +
+      '&pageSize=' +
+      data.pageSize +
+      '&orderBy=' +
+      data.orderBy,
     method: 'get'
   })
 }
@@ -44,7 +50,6 @@ export function policy(fileInfo: any) {
   })
 }
 
-
 /**
  * 前端上传文件接口（OSS直传）
  * @param payload
@@ -59,7 +64,6 @@ export function upload(payload: any) {
     data: payload
   })
 }
-
 
 export function updateFileInfo(payload: UpdateFileInfoParam) {
   return axiosInstance({
@@ -104,7 +108,6 @@ export function addTag(data: AddTagParam) {
     data: data
   })
 }
-
 
 export function getTagList(data: GetTagListParam) {
   return axiosInstance({

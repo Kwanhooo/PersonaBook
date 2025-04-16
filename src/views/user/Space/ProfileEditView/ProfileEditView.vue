@@ -13,8 +13,8 @@ const avatarUrl = ref('https://asset.0xcafebabe.cn/test.png')
 
 // 表单值
 const form = reactive({
-  nickname: '',// 必填
-  email: '',// 必填
+  nickname: '', // 必填
+  email: '', // 必填
   sex: false,
   grade: 0,
   favoriteType: '',
@@ -40,9 +40,7 @@ const rules = {
     { required: true, message: '邮箱为必填项', trigger: 'blur' },
     { type: 'email', message: '请检查邮箱格式是否正确', trigger: ['blur', 'change'] }
   ],
-  nickname: [
-    { required: true, message: '昵称为必填项', trigger: 'blur' }
-  ]
+  nickname: [{ required: true, message: '昵称为必填项', trigger: 'blur' }]
 } as FormRules
 
 const grades = ref([
@@ -95,7 +93,7 @@ const submitForm = () => {
     favoriteMedia: form.favoriteMedia,
     address: form.address
   } as UpdateInfoParam
-  updateInfo(updateInfoParam).then(res => {
+  updateInfo(updateInfoParam).then((res) => {
     if (res.data.code === 0) {
       ElMessage.success('用户信息修改成功')
       //
@@ -110,7 +108,6 @@ const submitForm = () => {
 const resetForm = () => {
   Object.assign(form, originForm)
 }
-
 </script>
 
 <template>
@@ -122,8 +119,9 @@ const resetForm = () => {
           action=""
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
-          :before-upload="beforeAvatarUpload">
-          <img v-if="avatarUrl" :src="avatarUrl" class="avatar">
+          :before-upload="beforeAvatarUpload"
+        >
+          <img v-if="avatarUrl" :src="avatarUrl" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon" />
         </el-upload>
       </div>
@@ -150,17 +148,32 @@ const resetForm = () => {
         </el-form-item>
         <el-form-item label="年级">
           <el-select v-model="form.grade" placeholder="请选择">
-            <el-option v-for="item in grades" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-option
+              v-for="item in grades"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="喜爱的图书类别">
           <el-select v-model="form.favoriteType" placeholder="请选择">
-            <el-option v-for="item in bookTypes" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-option
+              v-for="item in bookTypes"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="喜爱的媒介">
           <el-select v-model="form.favoriteMedia" placeholder="请选择">
-            <el-option v-for="item in medias" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-option
+              v-for="item in medias"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="详细地址">
@@ -176,5 +189,5 @@ const resetForm = () => {
 </template>
 
 <style scoped lang="scss">
-@import "./ProfileEditView";
+@import './ProfileEditView';
 </style>

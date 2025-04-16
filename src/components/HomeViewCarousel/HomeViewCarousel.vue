@@ -18,7 +18,9 @@ const handleSeeMore = () => {
             <div class="title">智慧图书馆</div>
             <div class="content">让大数据的力量带给孩子们有温度的阅读体验。</div>
             <div>
-              <el-button size="large" style="margin-top: 4rem" @click="handleSeeMore()">了解更多</el-button>
+              <el-button size="large" style="margin-top: 4rem" @click="handleSeeMore()"
+                >了解更多</el-button
+              >
             </div>
           </div>
         </div>
@@ -28,5 +30,5 @@ const handleSeeMore = () => {
 </template>
 
 <style scoped lang="scss">
-@import "HomeViewCarousel";
+@import 'HomeViewCarousel';
 </style>

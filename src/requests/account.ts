@@ -50,7 +50,7 @@ export function info() {
     url: AccountAPI.info,
     headers: {
       'Content-Type': MimeType.json,
-      'Authorization': localStorage.getItem('token')
+      Authorization: localStorage.getItem('token')
     },
     method: 'post'
   })
@@ -70,4 +70,3 @@ export function updateInfo(data: UpdateInfoParam) {
     data: data
   })
 }
-

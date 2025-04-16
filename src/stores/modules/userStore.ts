@@ -13,7 +13,7 @@ export const useUserStore = defineStore({
     user: {} as User
   }),
   getters: {
-    getUser: (state => state.user)
+    getUser: (state) => state.user
   },
   actions: {
     // 用户登录
@@ -87,8 +87,14 @@ export const useUserStore = defineStore({
     // TODO: 生产环境中移除 - 模拟登录
     mockLogin() {
       this.user = {
-        address: '', email: '', favoriteMedia: '', favoriteType: '', grade: 0, sex: false,
-        regTime: '', userId: '',
+        address: '',
+        email: '',
+        favoriteMedia: '',
+        favoriteType: '',
+        grade: 0,
+        sex: false,
+        regTime: '',
+        userId: '',
         username: 'dev-user-8209200504',
         role: UserRole.USER,
         isValid: UserValid.VALID,
@@ -100,8 +106,14 @@ export const useUserStore = defineStore({
     },
     mockAdminLogin() {
       this.user = {
-        address: '', email: '', favoriteMedia: '', favoriteType: '', grade: 0, sex: false,
-        regTime: '', userId: '',
+        address: '',
+        email: '',
+        favoriteMedia: '',
+        favoriteType: '',
+        grade: 0,
+        sex: false,
+        regTime: '',
+        userId: '',
         username: 'dev-admin-0000000001',
         role: UserRole.ADMIN,
         isValid: UserValid.VALID,

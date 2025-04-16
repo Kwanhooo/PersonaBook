@@ -22,7 +22,7 @@ const refreshData = () => {
     pageNum: currentPage.value,
     pageSize: pageSize.value
   } as GetCollectionListParam
-  getCollectionList(getCollectionListParam).then(res => {
+  getCollectionList(getCollectionListParam).then((res) => {
     records.value = res.data.data.records
     total.value = res.data.data.total
   })
@@ -34,12 +34,13 @@ refreshData()
 <template>
   <div class="favorite-books-view-wrapper">
     <div class="books-wrapper">
-      <BookThumbnail v-for="b in records"
-                     v-bind:key="b.id"
-                     v-bind:id="b.fileNo"
-                     v-bind:no="b.fileNo"
-                     v-bind:title="b.fileTitle"
-                     v-bind:cover="b.previewPicture"
+      <BookThumbnail
+        v-for="b in records"
+        v-bind:key="b.id"
+        v-bind:id="b.fileNo"
+        v-bind:no="b.fileNo"
+        v-bind:title="b.fileTitle"
+        v-bind:cover="b.previewPicture"
       />
       <i class="placeholder" v-for="p in 20" v-bind:key="p" />
     </div>
@@ -57,5 +58,5 @@ refreshData()
 </template>
 
 <style scoped lang="scss">
-@import "FavoriteBooksView";
+@import 'FavoriteBooksView';
 </style>

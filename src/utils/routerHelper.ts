@@ -46,4 +46,3 @@ export function getRouteInfoByPath(path: string): RouteRecordRaw | null {
   const allRoutes: RouteRecordRaw[] = $router.getRoutes()
   return findRouteByPath(allRoutes, path)
 }
-

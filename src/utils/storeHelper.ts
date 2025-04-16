@@ -25,5 +25,8 @@ export function getUserRole() {
 export function hasPermission(requiredRole: string, actualRole: string) {
   if (requiredRole === UserRole.GUEST) return true
   if (requiredRole === UserRole.ADMIN && actualRole === UserRole.ADMIN) return true
-  return requiredRole === UserRole.USER && (actualRole === UserRole.ADMIN || actualRole === UserRole.USER)
+  return (
+    requiredRole === UserRole.USER &&
+    (actualRole === UserRole.ADMIN || actualRole === UserRole.USER)
+  )
 }

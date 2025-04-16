@@ -33,7 +33,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'book-info',
             name: 'book-info',
-            component: () => import('@/views/admin/Backstage/BookManagement/BookInfoView/BookInfoView.vue'),
+            component: () =>
+              import('@/views/admin/Backstage/BookManagement/BookInfoView/BookInfoView.vue'),
             meta: {
               title: '图书信息',
               isAuthRequired: true,
@@ -45,7 +46,10 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'book-category',
             name: 'book-category',
-            component: () => import('@/views/admin/Backstage/BookManagement/BookCategoryView/BookCategoryView.vue'),
+            component: () =>
+              import(
+                '@/views/admin/Backstage/BookManagement/BookCategoryView/BookCategoryView.vue'
+              ),
             meta: {
               title: '图书分类',
               isAuthRequired: true,
@@ -83,7 +87,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'group-portrait',
             name: 'group-portrait',
-            component: () => import('@/views/admin/Backstage/GroupPortraitView/GroupPortraitView.vue'),
+            component: () =>
+              import('@/views/admin/Backstage/GroupPortraitView/GroupPortraitView.vue'),
             meta: {
               title: '群体画像',
               isAuthRequired: true,
@@ -121,7 +126,8 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'students',
             name: 'students',
-            component: () => import('@/views/admin/Backstage/UserMangement/StudentsView/StudentsView.vue'),
+            component: () =>
+              import('@/views/admin/Backstage/UserMangement/StudentsView/StudentsView.vue'),
             meta: {
               title: '学生管理',
               isAuthRequired: true,
@@ -185,7 +191,10 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'rating-details',
             name: 'rating-details',
-            component: () => import('@/views/admin/Backstage/RatingManagement/RatingDetailsView/RatingDetailsView.vue'),
+            component: () =>
+              import(
+                '@/views/admin/Backstage/RatingManagement/RatingDetailsView/RatingDetailsView.vue'
+              ),
             meta: {
               title: '评分详情',
               isAuthRequired: true,
@@ -197,7 +206,10 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'comment-details',
             name: 'comment-details',
-            component: () => import('@/views/admin/Backstage/CommentManagement/CommentDetailsView/CommentDetailsView.vue'),
+            component: () =>
+              import(
+                '@/views/admin/Backstage/CommentManagement/CommentDetailsView/CommentDetailsView.vue'
+              ),
             meta: {
               title: '评论详情',
               isAuthRequired: true,
@@ -209,7 +221,10 @@ const routes: Array<RouteRecordRaw> = [
           {
             path: 'collection-details',
             name: 'collection-details',
-            component: () => import('@/views/admin/Backstage/CollectionManagement/CollectionDetailsView/CollectionDetailsView.vue'),
+            component: () =>
+              import(
+                '@/views/admin/Backstage/CollectionManagement/CollectionDetailsView/CollectionDetailsView.vue'
+              ),
             meta: {
               title: '收藏详情',
               isAuthRequired: true,

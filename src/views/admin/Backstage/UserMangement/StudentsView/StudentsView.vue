@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { type Ref, ref } from 'vue'
-import { CircleClose, Search } from '@element-plus/icons-vue'
 import { deleteUser, getUserList } from '@/requests/admin/userManagement'
 import { ElMessage } from 'element-plus'
 import type { User } from '@/interfaces/entity/User'
@@ -27,7 +26,7 @@ function editRow(row: any) {
 
 function deleteRow(row: any) {
   console.log('删除行', row)
-  deleteUser(row.userId).then(res => {
+  deleteUser(row.userId).then((res) => {
     if (res.data.code === 0) {
       ElMessage.success('删除用户成功')
       refreshData()
@@ -47,7 +46,7 @@ function refreshData() {
     pageNum: currentPage.value,
     pageSize: pageSize.value
   } as GetUserListParam
-  getUserList(getUserListParam).then(res => {
+  getUserList(getUserListParam).then((res) => {
     console.log(res.data.data)
     records.value = res.data.data.records
   })
@@ -55,10 +54,8 @@ function refreshData() {
 
 //@ts-ignore
 function formatGender(row, column, value) {
-  if (value === true)
-    return '男'
-  else if (value === false)
-    return '女'
+  if (value === true) return '男'
+  else if (value === false) return '女'
   else return ''
 }
 
@@ -76,48 +73,87 @@ function formatGrade(row, column, value) {
   return grades[value] || ''
 }
 
-
 refreshData()
 </script>
 
 <template>
   <div class="users-view-wrapper">
     <div class="control-group-wrapper">
-      <div class="left">
-        <el-input v-model="searchKeyword" placeholder="请输入查找内容" style="width:20rem;margin-right: 1rem" />
-        <el-button type="primary">
-          <el-icon>
-            <Search />
-          </el-icon>
-          <span>查询</span>
-        </el-button>
-        <el-button>
-          <el-icon>
-            <CircleClose />
-          </el-icon>
-          <span>重置</span>
-        </el-button>
-      </div>
+      <!--      <div class="left">-->
+      <!--        <el-input v-model="searchKeyword" placeholder="请输入查找内容" style="width:20rem;margin-right: 1rem" />-->
+      <!--        <el-button type="primary">-->
+      <!--          <el-icon>-->
+      <!--            <Search />-->
+      <!--          </el-icon>-->
+      <!--          <span>查询</span>-->
+      <!--        </el-button>-->
+      <!--        <el-button>-->
+      <!--          <el-icon>-->
+      <!--            <CircleClose />-->
+      <!--          </el-icon>-->
+      <!--          <span>重置</span>-->
+      <!--        </el-button>-->
+      <!--      </div>-->
       <div class="right">
-        <el-button>新增</el-button>
-        <el-button type="danger">删除</el-button>
+        <!--        <el-button>新增</el-button>-->
+        <!--        <el-button type="danger">删除</el-button>-->
       </div>
     </div>
     <div class="table-wrapper">
       <el-table :data="records" style="width: 100%" height="100%">
         <el-table-column align="center" type="selection"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="nickname" label="昵称"></el-table-column>
-        <el-table-column show-overflow-tooltip min-width="200" align="center" prop="email"
-                         label="邮箱"></el-table-column>
-        <el-table-column show-overflow-tooltip min-width="100" align="center" prop="birthday"
-                         label="出生日期"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="sex" label="性别"
-                         :formatter="formatGender"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="grade" label="年级"
-                         :formatter="formatGrade"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="engagement" label="投入程度"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="comprehension" label="理解能力"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="readingAbility" label="阅读能力"></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="nickname"
+          label="昵称"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          min-width="200"
+          align="center"
+          prop="email"
+          label="邮箱"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          min-width="100"
+          align="center"
+          prop="birthday"
+          label="出生日期"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="sex"
+          label="性别"
+          :formatter="formatGender"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="grade"
+          label="年级"
+          :formatter="formatGrade"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="engagement"
+          label="投入程度"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="comprehension"
+          label="理解能力"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="readingAbility"
+          label="阅读能力"
+        ></el-table-column>
         <el-table-column show-overflow-tooltip align="center" label="问卷结果">
           <template #default="scope">
             <el-button type="text" @click="viewSurveyResult(scope.row)">查看</el-button>
@@ -131,7 +167,9 @@ refreshData()
         <el-table-column min-width="100px" align="center" label="操作">
           <template #default="scope">
             <!--            <el-button type="text" @click="editRow(scope.row)">编辑</el-button>-->
-            <el-button type="text" @click="deleteRow(scope.row)" style="color: #BD3124">删除</el-button>
+            <el-button type="text" @click="deleteRow(scope.row)" style="color: #bd3124"
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -150,5 +188,5 @@ refreshData()
 </template>
 
 <style scoped lang="scss">
-@import "./StudentsView";
+@import './StudentsView';
 </style>

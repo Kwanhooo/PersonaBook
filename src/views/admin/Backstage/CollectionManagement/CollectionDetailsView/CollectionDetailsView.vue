@@ -14,7 +14,11 @@ const total = ref(0)
 
 // 添加或修改函数以处理查询和重置操作
 function handleSearch() {
-  console.log('执行查询', { bookName: bookName.value, userName: userName.value, dateRange: dateRange.value })
+  console.log('执行查询', {
+    bookName: bookName.value,
+    userName: userName.value,
+    dateRange: dateRange.value
+  })
   // 根据查询条件更新 tableData 或执行相关查询逻辑
 }
 
@@ -36,7 +40,7 @@ function refreshData() {
     pageNum: currentPage.value,
     pageSize: pageSize.value
   }
-  getCollectionList(getCollectionListParam).then(res => {
+  getCollectionList(getCollectionListParam).then((res) => {
     tableData.value = res.data.data.records
     total.value = res.data.data.total
   })
@@ -47,7 +51,7 @@ refreshData()
 
 <template>
   <div class="comment-details-view-wrapper">
-    <div class="control-group-wrapper">
+    <div class="control-group-wrapper" v-if="false">
       <el-form inline>
         <el-form-item label="图书">
           <el-input v-model="bookName" placeholder="请输入图书名" />
@@ -62,7 +66,7 @@ refreshData()
             range-separator="至"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
-            style="width: 300px;"
+            style="width: 300px"
           ></el-date-picker>
         </el-form-item>
         <el-form-item>
@@ -84,10 +88,30 @@ refreshData()
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
         <el-table-column min-width="50" type="index" align="center" label="序号"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="fileTitle" label="图书名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="fileIsbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="userId" label="用户名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="collectTime" label="收藏时间"></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="fileTitle"
+          label="图书名"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="fileIsbn"
+          label="ISBN"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="userId"
+          label="用户名"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="collectTime"
+          label="收藏时间"
+        ></el-table-column>
       </el-table>
     </div>
     <div class="pagination-controller-wrapper">
@@ -105,5 +129,5 @@ refreshData()
 </template>
 
 <style scoped lang="scss">
-@import "CollectionDetailsView";
+@import 'CollectionDetailsView';
 </style>

@@ -20,5 +20,5 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="scss">
-@import "./InfoPlaceholder";
+@import './InfoPlaceholder';
 </style>

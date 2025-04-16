@@ -42,7 +42,7 @@ function refreshData() {
     pageNum: currentPage.value,
     pageSize: pageSize.value
   }
-  getCommentList(getCommentListParam).then(res => {
+  getCommentList(getCommentListParam).then((res) => {
     tableData.value = res.data.data.records
     total.value = res.data.data.total
   })
@@ -53,7 +53,7 @@ refreshData()
 
 <template>
   <div class="comment-details-view-wrapper">
-    <div class="control-group-wrapper">
+    <div class="control-group-wrapper" v-if="false">
       <el-form inline>
         <el-form-item label="图书">
           <el-input v-model="bookName" placeholder="请输入图书名" />
@@ -68,7 +68,7 @@ refreshData()
             range-separator="至"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
-            style="width: 300px;"
+            style="width: 300px"
           ></el-date-picker>
         </el-form-item>
         <el-form-item>
@@ -97,11 +97,36 @@ refreshData()
     <div class="table-wrapper">
       <el-table :data="tableData" style="width: 100%" height="100%">
         <el-table-column min-width="50" type="index" align="center" label="序号"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="fileTitle" label="图书名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="fileIsbn" label="ISBN"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="userId" label="用户名"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="commentContent" label="评论内容"></el-table-column>
-        <el-table-column show-overflow-tooltip align="center" prop="commentTime" label="评论时间"></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="fileTitle"
+          label="图书名"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="fileIsbn"
+          label="ISBN"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="userId"
+          label="用户名"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="commentContent"
+          label="评论内容"
+        ></el-table-column>
+        <el-table-column
+          show-overflow-tooltip
+          align="center"
+          prop="commentTime"
+          label="评论时间"
+        ></el-table-column>
       </el-table>
     </div>
     <div class="pagination-controller-wrapper">
@@ -119,5 +144,5 @@ refreshData()
 </template>
 
 <style scoped lang="scss">
-@import "./CommentDetailsView";
+@import './CommentDetailsView';
 </style>
